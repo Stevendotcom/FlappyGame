@@ -11,16 +11,19 @@ enum TYPE_PENETRATION
 
 bool CheckCollision(Rectangle, Rectangle);
 
-
 bool CheckBorderCollision(Rectangle, int maxWidth, int minWidth, int maxHeight, int minHeight);
 
 TYPE_PENETRATION SolveCollisionMap(Rectangle&, int maxWidth, int minWidth, int maxHeight, int minHeight);
 
+void DrawRect(Rectangle rect, Color color);
+
 Vector2 NormalizeVector(Vector2 vector);
+
 void NormalizeVector(float& x, float& y);
 
 float GetMagnitud(Vector2 vector);
 
 double RadiansToGrades(double r);
+
 double GradesToRadians(double r);
 

@@ -77,6 +77,15 @@ TYPE_PENETRATION SolveCollisionMap(Rectangle& entity, int maxWidth, int minWidth
 	return typeOfPenetration;
 }
 
+void DrawRect(Rectangle rect, Color color)
+{
+	DrawRectangle(static_cast<int>(rect.x), 
+				  static_cast<int>(rect.y),
+				  static_cast<int>(rect.width),
+				  static_cast<int>(rect.height),
+		          color);
+}
+
 Vector2 NormalizeVector(Vector2 vector)
 {
 	Vector2 zero;
