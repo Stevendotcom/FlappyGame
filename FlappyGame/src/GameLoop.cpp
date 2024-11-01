@@ -59,7 +59,7 @@ namespace game
 
 	void InitEntities()
 	{
-		float randomY = static_cast<float>(GetRandomValue(20, GetScreenHeight() - static_cast<int>(obs.body.height / 2)));
+		float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obs.body.height / 2)));
 
 		pl = player::Create(Rectangle{ static_cast<float>(screenWidth / 4),
 								   static_cast<float>(screenHeight) / 2,
@@ -108,6 +108,8 @@ namespace game
 
 		player::Draw(pl);
 		obstacule::Draw(obs);
+
+		DrawText("Version 0.1", 1, screenHeight - 10, 10, BLACK);
 
 		EndDrawing();
 	}
