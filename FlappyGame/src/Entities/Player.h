@@ -10,7 +10,7 @@ namespace game
 		{
 			Rectangle body;
 
-			Vector2 dirUD;
+			Vector2 velocity;
 
 			float speed;
 
