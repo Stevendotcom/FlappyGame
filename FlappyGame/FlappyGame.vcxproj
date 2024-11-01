@@ -10,6 +10,15 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GameLoop.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Utilities\Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GameLoop.h" />
+    <ClInclude Include="src\Utilities\Utils.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -104,9 +113,6 @@ xcopy "$(SolutionDir)res" "$(OutDir)res" /i /y /s</Command>
 xcopy "$(SolutionDir)res" "$(OutDir)res" /i /y /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
