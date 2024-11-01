@@ -5,6 +5,8 @@
 #include "Entities/Obstacule.h"
 #include "Entities/Player.h"
 
+#include "Utilities/Utils.h"
+
 namespace game
 {
 	const std::string GameName = "FlappyBird";
@@ -22,6 +24,8 @@ namespace game
 	bool programLoop = true;
 
 	void Init();
+
+	void InitEntities();
 
 	void Input();
 	void Update();
@@ -50,13 +54,20 @@ namespace game
 		InitWindow(screenWidth, screenHeight, GameName.c_str());
 		SetExitKey(KEY_NULL);
 
+		InitEntities();
+	}
+
+	void InitEntities()
+	{
+		float randomY = static_cast<float>(GetRandomValue(20, GetScreenHeight() - static_cast<int>(obs.body.height / 2)));
+
 		pl = player::Create(Rectangle{ static_cast<float>(screenWidth / 4),
-										   static_cast<float>(screenHeight) / 2,
-										   60,60});
+								   static_cast<float>(screenHeight) / 2,
+								   60,60 }, 300.f);
 
 		obs = obstacule::Create(Rectangle{ static_cast<float>(screenWidth + 20),
-										   static_cast<float>(screenHeight) / 2,
-										   40,120 });
+										   randomY,
+										   40,400 }, 500.f);
 	}
 
 	void Input()
@@ -68,6 +79,25 @@ namespace game
 	{
 		player::Update(pl);
 		obstacule::Update(obs);
+
+		if (obs.body.x + obs.body.width < 0)
+		{
+			obs.body.x = static_cast<float>(GetScreenWidth());
+			obs.body.y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obs.body.height)));
+		}
+
+		if (CheckCollision(pl.body, obs.body))
+		{
+			InitEntities();
+		}
+
+		if (CheckBorderCollision(pl.body, screenWidth, 0, screenHeight, 0))
+		{
+			if (pl.body.y < 0)
+				pl.body.y = 0;
+			if (pl.body.y + pl.body.height > screenHeight)
+				pl.body.y = screenHeight - pl.body.height;
+		}
 	}
 
 	void Draw()
