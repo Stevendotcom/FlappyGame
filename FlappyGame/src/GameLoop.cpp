@@ -96,7 +96,7 @@ namespace game
 			if (pl.body.y < 0)
 				pl.body.y = 0;
 			if (pl.body.y + pl.body.height > screenHeight)
-				pl.body.y = screenHeight - pl.body.height;
+				InitEntities();
 		}
 	}
 
