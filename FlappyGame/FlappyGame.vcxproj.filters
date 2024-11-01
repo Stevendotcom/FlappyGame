@@ -6,16 +6,31 @@
     <ClCompile Include="src\Utilities\Utils.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\Player.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Obstacule.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameLoop.h" />
     <ClInclude Include="src\Utilities\Utils.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entities\Player.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Obstacule.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">
       <UniqueIdentifier>{b5bda6dd-0fb1-4f64-8ccc-d91a612b8003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{f535dbd1-43d8-4947-ab27-917e907c0e04}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

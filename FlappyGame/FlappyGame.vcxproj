@@ -11,11 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\Obstacule.cpp" />
+    <ClCompile Include="src\Entities\Player.cpp" />
     <ClCompile Include="src\GameLoop.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utilities\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entities\Obstacule.h" />
+    <ClInclude Include="src\Entities\Player.h" />
     <ClInclude Include="src\GameLoop.h" />
     <ClInclude Include="src\Utilities\Utils.h" />
   </ItemGroup>
