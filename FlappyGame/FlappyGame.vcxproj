@@ -84,8 +84,7 @@
       </Command>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>
-xcopy "$(SolutionDir)res" "$(OutDir)res" /i /y /s</Command>
+      <Command>"$(SolutionDir)scripts\copy_files.bat" "$(SolutionDir)" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,8 +112,7 @@ xcopy "$(SolutionDir)res" "$(OutDir)res" /i /y /s</Command>
       </Command>
     </CustomBuildStep>
     <PostBuildEvent>
-      <Command>
-xcopy "$(SolutionDir)res" "$(OutDir)res" /i /y /s</Command>
+      <Command>"$(SolutionDir)scripts\copy_files.bat" "$(SolutionDir)" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
