@@ -2,6 +2,9 @@
 
 #include "raylib.h"
 
+#include "Entities/Obstacule.h"
+#include "Entities/Player.h"
+
 namespace game
 {
 	const std::string GameName = "FlappyBird";
@@ -12,6 +15,9 @@ namespace game
 	SCENE currentScene = SCENE::MENU;
 
 	SCENE prevScene = SCENE::MENU;
+
+	player::Player pl;
+	obstacule::Obstacule obs;
 
 	bool programLoop = true;
 
@@ -43,16 +49,25 @@ namespace game
 	{
 		InitWindow(screenWidth, screenHeight, GameName.c_str());
 		SetExitKey(KEY_NULL);
+
+		pl = player::Create(Rectangle{ static_cast<float>(screenWidth / 4),
+										   static_cast<float>(screenHeight) / 2,
+										   60,60});
+
+		obs = obstacule::Create(Rectangle{ static_cast<float>(screenWidth + 20),
+										   static_cast<float>(screenHeight) / 2,
+										   40,120 });
 	}
 
 	void Input()
 	{
-
+		player::Input(pl);
 	}
 
 	void Update()
 	{
-		
+		player::Update(pl);
+		obstacule::Update(obs);
 	}
 
 	void Draw()
@@ -61,7 +76,8 @@ namespace game
 
 		ClearBackground(WHITE);
 
-
+		player::Draw(pl);
+		obstacule::Draw(obs);
 
 		EndDrawing();
 	}
