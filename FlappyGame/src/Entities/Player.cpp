@@ -69,7 +69,7 @@ namespace game
 			DrawRect(p.body, BLUE);
 #endif // _DEBUG
 
-			DrawTexturePro(p.texture, p.source, p.body, p.origin, 180, WHITE);
+			DrawTexturePro(p.texture, p.source, p.body, p.origin, 195, WHITE);
 		}
 
 		void DeInit(Player& p)
