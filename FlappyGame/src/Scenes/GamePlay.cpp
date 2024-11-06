@@ -1,5 +1,7 @@
 #include "GamePlay.h"
 
+#include "GameLoop.h"
+
 #include "Entities/Obstacule.h"
 #include "Entities/Player.h"
 
@@ -40,6 +42,7 @@ namespace game
 				if (CheckCollision(pl.body, obs.body))
 				{
 					InitEntities();
+					currentScene = SCENE::MENU;
 				}
 
 				if (CheckBorderCollision(pl.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
@@ -47,7 +50,10 @@ namespace game
 					if (pl.body.y < 0)
 						pl.body.y = 0;
 					if (pl.body.y + pl.body.height > GetScreenHeight())
+					{
 						InitEntities();
+						currentScene = SCENE::MENU;
+					}
 				}
 			}
 			void Draw()
