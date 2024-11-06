@@ -2,10 +2,11 @@
 
 #include "raylib.h"
 
-#include "Entities/Obstacule.h"
-#include "Entities/Player.h"
+#include "Scenes/MainMenu.h"
+#include "Scenes/GamePlay.h"
+#include "Scenes/Credits.h"
 
-#include "Utilities/Utils.h"
+using namespace game::scenes;
 
 namespace game
 {
@@ -18,14 +19,9 @@ namespace game
 
 	SCENE prevScene = SCENE::MENU;
 
-	player::Player pl;
-	obstacule::Obstacule obs;
-
 	bool programLoop = true;
 
 	void Init();
-
-	void InitEntities();
 
 	void Input();
 	void Update();
@@ -54,49 +50,50 @@ namespace game
 		InitWindow(screenWidth, screenHeight, GameName.c_str());
 		SetExitKey(KEY_NULL);
 
-		InitEntities();
-	}
-
-	void InitEntities()
-	{
-		float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obs.body.height / 2)));
-
-		pl = player::Create(Rectangle{ static_cast<float>(screenWidth / 4),
-								   static_cast<float>(screenHeight) / 2,
-								   60,60 }, 300.f);
-
-		obs = obstacule::Create(Rectangle{ static_cast<float>(screenWidth + 20),
-										   randomY,
-										   40,400 }, 500.f);
+		mainmenu::Init();
+		gameplay::Init();
+		credits::Init();
 	}
 
 	void Input()
 	{
-		player::Input(pl);
+		switch (currentScene)
+		{
+		case game::SCENE::MENU:
+			mainmenu::Input();
+			break;
+
+		case game::SCENE::GAMEPLAY:
+			gameplay::Input();
+			break;
+
+		case game::SCENE::CREDITS:
+			credits::Input();
+			break;
+
+		case game::SCENE::EXIT:
+			break;
+		}
 	}
 
 	void Update()
 	{
-		player::Update(pl);
-		obstacule::Update(obs);
-
-		if (obs.body.x + obs.body.width < 0)
+		switch (currentScene)
 		{
-			obs.body.x = static_cast<float>(GetScreenWidth());
-			obs.body.y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obs.body.height)));
-		}
+		case game::SCENE::MENU:
+			mainmenu::Update();
+			break;
 
-		if (CheckCollision(pl.body, obs.body))
-		{
-			InitEntities();
-		}
+		case game::SCENE::GAMEPLAY:
+			gameplay::Update();
+			break;
 
-		if (CheckBorderCollision(pl.body, screenWidth, 0, screenHeight, 0))
-		{
-			if (pl.body.y < 0)
-				pl.body.y = 0;
-			if (pl.body.y + pl.body.height > screenHeight)
-				InitEntities();
+		case game::SCENE::CREDITS:
+			credits::Update();
+			break;
+
+		case game::SCENE::EXIT:
+			break;
 		}
 	}
 
@@ -106,8 +103,23 @@ namespace game
 
 		ClearBackground(WHITE);
 
-		player::Draw(pl);
-		obstacule::Draw(obs);
+		switch (currentScene)
+		{
+		case game::SCENE::MENU:
+			mainmenu::Draw();
+			break;
+
+		case game::SCENE::GAMEPLAY:
+			gameplay::Draw();
+			break;
+
+		case game::SCENE::CREDITS:
+			credits::Draw();
+			break;
+
+		case game::SCENE::EXIT:
+			break;
+		}
 
 		DrawText("Version 0.1", 1, screenHeight - 10, 10, BLACK);
 
@@ -116,6 +128,10 @@ namespace game
 
 	void DeInit()
 	{
+		mainmenu::DeInit();
+		gameplay::DeInit();
+		credits::DeInit();
+
 		CloseWindow();
 	}
 }

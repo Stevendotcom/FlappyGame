@@ -6,11 +6,11 @@ namespace game
 {
 	enum class SCENE
 	{
-		GAMEPLAY,
-		OPTIONS,
-		CREDITS,
-		EXIT,
 		MENU,
+		GAMEPLAY,
+		//OPTIONS,
+		CREDITS,
+		EXIT
 	};
 
 	extern int screenWidth;
