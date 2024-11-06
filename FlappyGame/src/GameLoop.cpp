@@ -11,6 +11,7 @@ using namespace game::scenes;
 namespace game
 {
 	const std::string GameName = "FlappyBird";
+	const std::string GameVersion = "Version 0.2";
 
 	int screenWidth = 1024;
 	int screenHeight = 768;
@@ -116,7 +117,7 @@ namespace game
 			break;
 		}
 
-		DrawText("Version 0.1", 1, screenHeight - 10, 10, BLACK);
+		DrawText(GameVersion.c_str(), 1, screenHeight - 10, 10, BLACK);
 
 		EndDrawing();
 	}
