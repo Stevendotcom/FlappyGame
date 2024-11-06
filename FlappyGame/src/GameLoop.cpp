@@ -70,9 +70,6 @@ namespace game
 		case game::SCENE::CREDITS:
 			credits::Input();
 			break;
-
-		case game::SCENE::EXIT:
-			break;
 		}
 	}
 
@@ -93,6 +90,7 @@ namespace game
 			break;
 
 		case game::SCENE::EXIT:
+			programLoop = false;
 			break;
 		}
 	}
@@ -115,9 +113,6 @@ namespace game
 
 		case game::SCENE::CREDITS:
 			credits::Draw();
-			break;
-
-		case game::SCENE::EXIT:
 			break;
 		}
 
