@@ -33,13 +33,17 @@ namespace game
 				player::Update(pl);
 				obstacule::Update(obs);
 
-				if (obs.body.x + obs.body.width < 0)
+				if (obs.body1.x + obs.body1.width < 0)
 				{
-					obs.body.x = static_cast<float>(GetScreenWidth());
-					obs.body.y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obs.body.height)));
+					Vector2 newPos;
+
+					newPos.x = static_cast<float>(GetScreenWidth());
+					newPos.y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obs.body1.height)));
+
+					obstacule::SetPosition(obs, newPos);
 				}
 
-				if (CheckCollision(pl.body, obs.body))
+				if (CheckCollision(pl.body, obs.body1) || CheckCollision(pl.body, obs.body2))
 				{
 					InitEntities();
 					currentScene = SCENE::MENU;
@@ -69,15 +73,15 @@ namespace game
 
 			void InitEntities()
 			{
-				float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obs.body.height / 2)));
+				float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obs.body1.height / 2)));
 
-				pl = player::Create(Rectangle{ static_cast<float>(GetScreenWidth() / 4),
-										   static_cast<float>(GetScreenHeight()) / 2,
-										   60,60 }, 300.f);
+				float x = static_cast<float>(GetScreenWidth() / 4);
+				float y = static_cast<float>(GetScreenHeight()) / 2;
 
-				obs = obstacule::Create(Rectangle{ static_cast<float>(GetScreenWidth() + 20),
-												   randomY,
-												   40,400 }, 500.f);
+				pl = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
+
+				x = static_cast<float>(GetScreenWidth() + 20);
+				obs = obstacule::Create(x, randomY, 40, 1000, 500.f);
 			}
 
 		}

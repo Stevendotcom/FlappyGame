@@ -8,7 +8,8 @@ namespace game
 	{
 		struct Obstacule
 		{
-			Rectangle body;
+			Rectangle body1;
+			Rectangle body2;
 
 			Vector2 dir;
 
@@ -17,9 +18,11 @@ namespace game
 			bool isAlive;
 		};
 
-		Obstacule Create(Rectangle body, float speed = 50.f, bool isAlive = false);
+		Obstacule Create(float x, float y, float width, float height, float speed = 50.f, bool isAlive = false);
 
 		void Update(Obstacule& o);
 		void Draw(Obstacule& o);
+
+		void SetPosition(Obstacule& o, Vector2 newPos);
 	}
 }
