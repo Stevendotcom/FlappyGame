@@ -12,6 +12,21 @@
     <ClCompile Include="src\Entities\Obstacule.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scenes\MainMenu.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\Credits.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\GamePlay.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\Button.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\Text.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameLoop.h" />
@@ -24,6 +39,21 @@
     <ClInclude Include="src\Entities\Obstacule.h">
       <Filter>Entities</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scenes\Credits.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\GamePlay.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\MainMenu.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\Button.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\Text.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">
@@ -31,6 +61,12 @@
     </Filter>
     <Filter Include="Entities">
       <UniqueIdentifier>{f535dbd1-43d8-4947-ab27-917e907c0e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{f59fd9d4-d264-49c7-928f-7cb567ff42ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{b9e42839-94d4-4021-8d9c-7fbec0ec7e35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

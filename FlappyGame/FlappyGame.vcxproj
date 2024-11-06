@@ -15,12 +15,22 @@
     <ClCompile Include="src\Entities\Player.cpp" />
     <ClCompile Include="src\GameLoop.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Scenes\Credits.cpp" />
+    <ClCompile Include="src\Scenes\GamePlay.cpp" />
+    <ClCompile Include="src\Scenes\MainMenu.cpp" />
+    <ClCompile Include="src\UI\Button.cpp" />
+    <ClCompile Include="src\UI\Text.cpp" />
     <ClCompile Include="src\Utilities\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities\Obstacule.h" />
     <ClInclude Include="src\Entities\Player.h" />
     <ClInclude Include="src\GameLoop.h" />
+    <ClInclude Include="src\Scenes\Credits.h" />
+    <ClInclude Include="src\Scenes\GamePlay.h" />
+    <ClInclude Include="src\Scenes\MainMenu.h" />
+    <ClInclude Include="src\UI\Button.h" />
+    <ClInclude Include="src\UI\Text.h" />
     <ClInclude Include="src\Utilities\Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
