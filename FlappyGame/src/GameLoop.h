@@ -10,7 +10,8 @@ namespace game
 		GAMEPLAY,
 		//OPTIONS,
 		CREDITS,
-		EXIT
+		EXIT,
+		NONE
 	};
 
 	extern int screenWidth;
