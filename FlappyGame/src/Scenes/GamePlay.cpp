@@ -20,7 +20,7 @@ namespace game
 
 			void Init()
 			{
-
+				InitEntities();
 			}
 
 			void Input()
