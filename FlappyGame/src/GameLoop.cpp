@@ -22,13 +22,13 @@ namespace game
 
 	bool programLoop = true;
 
-	void Init();
+	static void Init();
 
-	void Input();
-	void Update();
-	void Draw();
+	static void Input();
+	static void Update();
+	static void Draw();
 
-	void DeInit();
+	static void DeInit();
 
 	void Play()
 	{
