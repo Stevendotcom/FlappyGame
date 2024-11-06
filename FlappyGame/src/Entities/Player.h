@@ -8,12 +8,23 @@ namespace game
 	{
 		struct Player
 		{
+			Rectangle source;
 			Rectangle body;
+			Vector2 origin;
+
+			Texture2D texture;
 
 			Vector2 velocity;
 
+			int animationStage;
+			int maxAnimationStage;
+
 			float speed;
 
+			float timer;
+			float resetTimer;
+
+			bool activeAnimation;
 			bool isAlive;
 		};
 
@@ -22,5 +33,7 @@ namespace game
 		void Input(Player& p);
 		void Update(Player& p);
 		void Draw(Player& p);
+
+		void DeInit(Player& p);
 	}
 }

@@ -68,7 +68,7 @@ namespace game
 
 			void DeInit()
 			{
-
+				player::DeInit(pl);
 			}
 
 			void InitEntities()
