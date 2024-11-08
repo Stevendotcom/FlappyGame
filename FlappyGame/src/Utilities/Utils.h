@@ -21,7 +21,7 @@ Vector2 NormalizeVector(Vector2 vector);
 
 void NormalizeVector(float& x, float& y);
 
-float GetMagnitud(Vector2 vector);
+float GetMagnitud(const Vector2& vector);
 
 double RadiansToGrades(double r);
 
