@@ -15,7 +15,7 @@ namespace text
 		Color color;
 	};
 
-	Text Create(std::string text, float x, float y, int font, Color color);
+	Text Create(const std::string &text, float x, float y, int font, Color color);
 
-	void Draw(Text text);
+	void Draw(const Text &text);
 }

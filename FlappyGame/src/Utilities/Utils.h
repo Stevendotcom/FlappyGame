@@ -2,20 +2,20 @@
 
 #include "raylib.h"
 
-enum TYPE_PENETRATION
+enum class CollisionPlace
 {
-	HORIZONTAL,
-	VERTICAL,
-	NONE
+	Horizontal,
+	Vertical,
+	None
 };
 
-bool CheckCollision(Rectangle, Rectangle);
+bool CheckCollision(const Rectangle &, const Rectangle &);
 
-bool CheckBorderCollision(Rectangle, int maxWidth, int minWidth, int maxHeight, int minHeight);
+bool CheckBorderCollision(const Rectangle &, int maxWidth, int minWidth, int maxHeight, int minHeight);
 
-TYPE_PENETRATION SolveCollisionMap(Rectangle&, int maxWidth, int minWidth, int maxHeight, int minHeight);
+CollisionPlace SolveCollisionMap(Rectangle&, int maxWidth, int minWidth, int maxHeight, int minHeight);
 
-void DrawRect(Rectangle rect, Color color);
+void DrawRect(const Rectangle &rect, Color color);
 
 Vector2 NormalizeVector(Vector2 vector);
 

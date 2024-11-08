@@ -22,15 +22,15 @@ namespace game
 
 				back = button::Create(graph,"Back");
 
-				graph.x = (GetScreenWidth() / 2.f);
-				graph.y = (GetScreenHeight() / 2.f);
+				graph.x = (static_cast<float>(GetScreenWidth()) / 2.f);
+				graph.y = (static_cast<float>(GetScreenHeight()) / 2.f);
 				emaButton = button::Create(graph, "Emanuel Parajon");
 			}
 
 			void Input()
 			{
 				if (button::IsPressed(back))
-					currentScene = SCENE::MENU;
+					currentScene = Scene::Menu;
 				if (button::IsPressed(emaButton))
 					OpenURL("https://frostpower.itch.io/");
 			}

@@ -4,14 +4,14 @@
 
 namespace game
 {
-	enum class SCENE
+	enum class Scene
 	{
-		MENU,
-		GAMEPLAY,
+		Menu,
+		Gameplay,
 		//OPTIONS,
-		CREDITS,
-		EXIT,
-		NONE
+		Credits,
+		Exit,
+		None
 	};
 
 	extern int screenWidth;
@@ -19,7 +19,7 @@ namespace game
 
 	extern const std::string GameName;
 
-	extern SCENE currentScene;
+	extern Scene currentScene;
 
 	extern bool programLoop;
 

@@ -10,13 +10,13 @@ namespace game
 	{
 		namespace mainmenu
 		{
-			const int maxButtons = 3;
+			constexpr int maxButtons = 3;
 
 			button::Button buttons[maxButtons];
 
 			void Init()
 			{
-				float x = (GetScreenWidth() / 2.f);
+				float x = (static_cast<float>(GetScreenWidth()) / 2.f);
 				float y = 50;
 
 				Rectangle graph = { x,y,button::ButtonWidth,button::ButtonHeight };
@@ -38,7 +38,7 @@ namespace game
 				for (int i = 0; i < maxButtons; i++)
 				{
 					if (button::IsPressed(buttons[i]))
-						currentScene = static_cast<SCENE>(i + 1);
+						currentScene = static_cast<Scene>(i + 1);
 				}
 			}
 			void Update()

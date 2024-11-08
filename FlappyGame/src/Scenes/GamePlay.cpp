@@ -65,14 +65,14 @@ namespace game
 
 				Rectangle posButton;
 
-				posButton.x = screenWidth / 2.f;
-				posButton.y = screenHeight / 2.f - button::ButtonHeight * 1.2f;
+				posButton.x = static_cast<float>(screenWidth) / 2.0f;
+				posButton.y = static_cast<float>(screenHeight) / 2.0f - button::ButtonHeight * 1.2f;
 				posButton.width = button::ButtonWidth;
 				posButton.height = button::ButtonHeight;
 
 				resume = button::Create(posButton, "Resume");
 
-				posButton.y = screenHeight / 2.f + button::ButtonHeight * 2.4f;
+				posButton.y = static_cast<float>(screenHeight) / 2.0f + button::ButtonHeight * 2.4f;
 
 				menu = button::Create(posButton, "Menu");
 
@@ -91,7 +91,7 @@ namespace game
 
 					if (button::IsPressed(menu))
 					{
-						currentScene = SCENE::MENU;
+						currentScene =  Scene::Menu;
 						pause = !pause;
 						InitEntities();
 					}
@@ -129,17 +129,17 @@ namespace game
 				if (CheckCollision(pl.body, obs.body1) || CheckCollision(pl.body, obs.body2))
 				{
 					InitEntities();
-					currentScene = SCENE::MENU;
+					currentScene =  Scene::Menu;
 				}
 
 				if (CheckBorderCollision(pl.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
 				{
 					if (pl.body.y < 0)
 						pl.body.y = 0;
-					if (pl.body.y + pl.body.height > GetScreenHeight())
+					if (pl.body.y + pl.body.height > static_cast<float>(GetScreenHeight()))
 					{
 						InitEntities();
-						currentScene = SCENE::MENU;
+						currentScene =  Scene::Menu;
 					}
 				}
 			}
@@ -148,19 +148,19 @@ namespace game
 				Color transparent = { 255,255,255,200 };
 
 				DrawTextureEx(backGround, { offsetBack,0 }, 0, 1, WHITE);
-				DrawTextureEx(backGround, { backGround.width + offsetBack,0 }, 0, 1, WHITE);
+				DrawTextureEx(backGround, { static_cast<float>(backGround.width) + offsetBack,0 }, 0, 1, WHITE);
 
 				DrawTextureEx(midGround, { offsetMid,0 }, 0, 1, transparent);
-				DrawTextureEx(midGround, { midGround.width + offsetMid,0 }, 0, 1, transparent);
+				DrawTextureEx(midGround, { static_cast<float>(midGround.width) + offsetMid,0 }, 0, 1, transparent);
 
 				player::Draw(pl);
 				obstacle::Draw(obs);
 
 				DrawTextureEx(foreGround, { offsetFore,0 }, 0, 1, WHITE);
-				DrawTextureEx(foreGround, { foreGround.width + offsetFore,0 }, 0, 1, WHITE);
+				DrawTextureEx(foreGround, { static_cast<float>(foreGround.width) + offsetFore,0 }, 0, 1, WHITE);
 
 				DrawRect(Rectangle
-					{ 0, screenHeight / 5.f, static_cast<float>(screenWidth),
+					{ 0, static_cast<float>(screenHeight) / 5.0f, static_cast<float>(screenWidth),
 					static_cast<float>(screenHeight) }, Color{ 37, 107,122,150 });
 
 				if (pause)
@@ -187,8 +187,8 @@ namespace game
 			{
 				float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obs.body1.height / 2)));
 
-				float x = static_cast<float>(GetScreenWidth() / 4);
-				float y = static_cast<float>(GetScreenHeight()) / 2;
+				float x = static_cast<float>(GetScreenWidth()) / 4.0f;
+				float y = static_cast<float>(GetScreenHeight()) / 2.0f;
 
 				pl = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
 

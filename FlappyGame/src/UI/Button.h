@@ -21,16 +21,16 @@ namespace button
 		bool isMouseOnTop;
 	};
 
-	Button Create(Rectangle graph = {0,0,ButtonWidth, ButtonHeight}, std::string text = "example", int fontSize = ButtonFont, Color textColor = WHITE);
+	Button Create(const Rectangle &graph = {0,0,ButtonWidth, ButtonHeight}, const std::string &text = "example", int fontSize = ButtonFont, Color textColor = WHITE);
 
-	Vector2 GetCenterPosition(Button);
+	Vector2 GetCenterPosition(const Button &);
 
-	void SetPosition(Button& button, Vector2 newPosition);
+	void SetPosition(Button& button, const Vector2& newPosition);
 
 	bool MouseOnTop(Button&);
 	bool IsPressed(Button&);
 
-	void SetText(Button& button, std::string text);
+	void SetText(Button& button, const std::string &text);
 
-	void Draw(Button);
+	void Draw(const Button &);
 }

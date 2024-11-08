@@ -11,14 +11,14 @@ using namespace game::scenes;
 namespace game
 {
 	const std::string GameName = "FlappyBird";
-	const std::string GameVersion = "Version 0.2";
+	const std::string GameVersion = "Version 0.3";
 
 	int screenWidth = 1024;
 	int screenHeight = 768;
 
-	SCENE currentScene = SCENE::MENU;
+	Scene currentScene = Scene::Menu;
 
-	SCENE prevScene = SCENE::MENU;
+	auto prevScene = Scene::Menu;
 
 	bool programLoop = true;
 
@@ -60,15 +60,15 @@ namespace game
 	{
 		switch (currentScene)
 		{
-		case game::SCENE::MENU:
+		case Scene::Menu:
 			mainmenu::Input();
 			break;
 
-		case game::SCENE::GAMEPLAY:
+		case Scene::Gameplay:
 			gameplay::Input();
 			break;
 
-		case game::SCENE::CREDITS:
+		case Scene::Credits:
 			credits::Input();
 			break;
 		}
@@ -78,19 +78,19 @@ namespace game
 	{
 		switch (currentScene)
 		{
-		case game::SCENE::MENU:
+		case Scene::Menu:
 			mainmenu::Update();
 			break;
 
-		case game::SCENE::GAMEPLAY:
+		case Scene::Gameplay:
 			gameplay::Update();
 			break;
 
-		case game::SCENE::CREDITS:
+		case Scene::Credits:
 			credits::Update();
 			break;
 
-		case game::SCENE::EXIT:
+		case Scene::Exit:
 			programLoop = false;
 			break;
 		}
@@ -104,15 +104,15 @@ namespace game
 
 		switch (currentScene)
 		{
-		case game::SCENE::MENU:
+		case Scene::Menu:
 			mainmenu::Draw();
 			break;
 
-		case game::SCENE::GAMEPLAY:
+		case Scene::Gameplay:
 			gameplay::Draw();
 			break;
 
-		case game::SCENE::CREDITS:
+		case Scene::Credits:
 			credits::Draw();
 			break;
 		}

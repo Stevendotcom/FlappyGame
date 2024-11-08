@@ -4,7 +4,7 @@
 
 namespace button
 {
-	Button Create(Rectangle graph, std::string text, int fontSize, Color textColor)
+	Button Create(const Rectangle &graph, const std::string &text, int fontSize, Color textColor)
 	{
 		Button newB;
 
@@ -25,7 +25,7 @@ namespace button
 		return newB;
 	}
 
-	Vector2 GetCenterPosition(Button button)
+	Vector2 GetCenterPosition(const Button &button)
 	{
 		Vector2 centerPosition;
 
@@ -35,7 +35,7 @@ namespace button
 		return centerPosition;
 	}
 
-	void SetPosition(Button& button, Vector2 newPosition)
+	void SetPosition(Button& button, const Vector2& newPosition)
 	{
 		button.graph.x = newPosition.x - (button.graph.width / 2);
 		button.graph.y = newPosition.y - (button.graph.height / 2);
@@ -89,15 +89,15 @@ namespace button
 		return isReleassed;
 	}
 
-	void SetText(Button& button, std::string text)
+	void SetText(Button& button, const std::string &text)
 	{
 		button.text.text = text;
 
-		button.text.position.x = button.graph.x + (button.graph.width / 2) - (MeasureText(button.text.text.c_str(), button.text.font) / 2);
-		button.text.position.y = button.graph.y + (button.graph.height / 2) - (button.text.font / 2);
+		button.text.position.x = button.graph.x + (button.graph.width / 2) - static_cast<float>(MeasureText(button.text.text.c_str(), button.text.font)) / 2.0f;
+		button.text.position.y = button.graph.y + (button.graph.height / 2) - static_cast<float>((button.text.font)) / 2.0F;
 	}
 
-	void Draw(Button button)
+	void Draw(const Button &button)
 	{
 		Color colorUsed;
 

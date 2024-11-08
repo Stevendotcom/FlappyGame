@@ -100,7 +100,7 @@ namespace game
 		{
 			if (p.activeAnimation && p.timer <= 0)
 			{
-				p.source.y = p.source.height * p.animationStage;
+				p.source.y = p.source.height * static_cast<float>(p.animationStage);
 
 				switch (p.animationStage)
 				{
