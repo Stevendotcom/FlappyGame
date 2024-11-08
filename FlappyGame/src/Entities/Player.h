@@ -30,7 +30,7 @@ namespace game
 
 		Player Create(Rectangle body, float speed = 100.f, bool isAlive = true);
 
-		void Input(Player& p);
+		void Input(Player& p, int key = KEY_SPACE);
 		void Update(Player& p);
 		void Draw(Player& p);
 

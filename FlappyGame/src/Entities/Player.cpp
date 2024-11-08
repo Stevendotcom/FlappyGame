@@ -23,7 +23,7 @@ namespace game
 			newP.velocity = Vector2{ 0, 0 };
 
 			newP.origin = Vector2{ body.width, body.height };
-			newP.source = Rectangle{ 0,0,32,32 };
+			newP.source = Rectangle{ 0, 0, 32, 32 };
 
 			newP.texture = LoadTexture("res/Cannon.png");
 
@@ -41,21 +41,18 @@ namespace game
 			return newP;
 		}
 
-		void Input(Player& p)
+		void Input(Player& p, int key)
 		{
-			/*		if (IsKeyDown(KEY_W))
-						p.velocity.y = -1.f;
-					else if (IsKeyDown(KEY_S))
-						p.velocity.y = 1.f;
-					else if (p.velocity.y != 0.f)
-						p.velocity.y = 0.f;*/
-			p;
+			if (IsKeyPressed(key))
+			{
+				Jump(p);
+			}
 		}
 
 		void Update(Player& p)
 		{
 			Move(p);
-			Jump(p);
+			//Jump(p);
 			Gravity(p);
 
 			Animation(p);
@@ -89,12 +86,10 @@ namespace game
 		}
 		void Jump(Player& p)
 		{
-			if (IsKeyPressed(KEY_SPACE))
-			{
-				p.velocity.y = -350.f;
-				p.activeAnimation = true;
-				p.animationStage = 1;
-			}
+			p.velocity.y = -350.f;
+			p.activeAnimation = true;
+			p.animationStage = 1;
+
 		}
 		void Animation(Player& p)
 		{
@@ -102,8 +97,7 @@ namespace game
 			{
 				p.source.y = p.source.height * static_cast<float>(p.animationStage);
 
-				switch (p.animationStage)
-				{
+				switch (p.animationStage) {
 				case 0:
 					p.activeAnimation = false;
 					p.animationStage++;
