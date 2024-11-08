@@ -10,7 +10,8 @@ namespace game
 	{
 		namespace mainmenu
 		{
-			constexpr int maxButtons = 3;
+			const std::string GameVersion = "Version 0.3";
+			constexpr int maxButtons = 4;
 
 			button::Button buttons[maxButtons];
 
@@ -28,9 +29,10 @@ namespace game
 					graph.y += button::ButtonHeight * 1.5f;
 				}
 
-				button::SetText(buttons[0], "Play");
-				button::SetText(buttons[1], "Credits");
-				button::SetText(buttons[2], "Exit");
+				button::SetText(buttons[0], "1 Player");
+				button::SetText(buttons[1], "2 Players");
+				button::SetText(buttons[2], "Credits");
+				button::SetText(buttons[3], "Exit");
 			}
 
 			void Input()
@@ -54,6 +56,8 @@ namespace game
 				{
 					button::Draw(buttons[i]);
 				}
+
+				DrawText(GameVersion.c_str(), 1, screenHeight - 10, 10, BLACK);
 			}
 
 			void DeInit()
