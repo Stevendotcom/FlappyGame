@@ -8,6 +8,7 @@ namespace game
 	{
 		Menu,
 		Gameplay,
+		GameplayMultiplayer,
 		//OPTIONS,
 		Credits,
 		Exit,

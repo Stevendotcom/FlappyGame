@@ -2,16 +2,16 @@
 
 #include "raylib.h"
 
-#include "Scenes/MainMenu.h"
-#include "Scenes/GamePlay.h"
 #include "Scenes/Credits.h"
+#include "Scenes/GamePlay.h"
+#include "Scenes/GamePlayMultiplayer.h"
+#include "Scenes/MainMenu.h"
 
 using namespace game::scenes;
 
 namespace game
 {
 	const std::string GameName = "FlappyBird";
-	const std::string GameVersion = "Version 0.3";
 
 	int screenWidth = 1024;
 	int screenHeight = 768;
@@ -49,10 +49,12 @@ namespace game
 	void Init()
 	{
 		InitWindow(screenWidth, screenHeight, GameName.c_str());
+		SetConfigFlags(FLAG_VSYNC_HINT);
 		SetExitKey(KEY_NULL);
 
 		mainmenu::Init();
 		gameplay::Init();
+		gameplayMultiplayer::Init();
 		credits::Init();
 	}
 
@@ -71,6 +73,9 @@ namespace game
 		case Scene::Credits:
 			credits::Input();
 			break;
+		case Scene::GameplayMultiplayer:
+			gameplayMultiplayer::Input();
+			break;
 		}
 	}
 
@@ -84,6 +89,10 @@ namespace game
 
 		case Scene::Gameplay:
 			gameplay::Update();
+			break;
+
+		case Scene::GameplayMultiplayer:
+			gameplayMultiplayer::Update();
 			break;
 
 		case Scene::Credits:
@@ -112,12 +121,14 @@ namespace game
 			gameplay::Draw();
 			break;
 
+		case Scene::GameplayMultiplayer:
+			gameplayMultiplayer::Draw();
+			break;
+
 		case Scene::Credits:
 			credits::Draw();
 			break;
 		}
-
-		DrawText(GameVersion.c_str(), 1, screenHeight - 10, 10, BLACK);
 
 		EndDrawing();
 	}
@@ -126,6 +137,7 @@ namespace game
 	{
 		mainmenu::DeInit();
 		gameplay::DeInit();
+		gameplayMultiplayer::DeInit();
 		credits::DeInit();
 
 		CloseWindow();
