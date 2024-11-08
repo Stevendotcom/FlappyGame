@@ -5,6 +5,8 @@
 #include "Entities/Obstacule.h"
 #include "Entities/Player.h"
 
+#include "UI/Button.h"
+
 #include "Utilities/Utils.h"
 
 namespace game
@@ -16,20 +18,62 @@ namespace game
 			player::Player pl;
 			obstacule::Obstacule obs;
 
+			button::Button resume;
+			button::Button menu;
+
+			bool pause;
+
 			void InitEntities();
 
 			void Init()
 			{
+				Rectangle posButton;
+
+				posButton.x = screenWidth / 2.f;
+				posButton.y = screenHeight / 2.f - button::ButtonHeight * 1.2f;
+				posButton.width = button::ButtonWidth;
+				posButton.height = button::ButtonHeight;
+
+				resume = button::Create(posButton, "Resume");
+
+				posButton.y = screenHeight / 2.f + button::ButtonHeight * 2.4f;
+
+				menu = button::Create(posButton, "Menu");
 				InitEntities();
 			}
 
 			void Input()
 			{
-				player::Input(pl);
+				if (IsKeyPressed(KEY_ESCAPE))
+					pause = !pause;
 
+				if (pause)
+				{
+					if (button::IsPressed(resume))
+						pause = !pause;
+
+					if (button::IsPressed(menu))
+					{
+						currentScene = SCENE::MENU;
+						pause = !pause;
+						InitEntities();
+					}
+
+					return;
+				}
+
+				player::Input(pl);
 			}
 			void Update()
 			{
+				if (pause)
+				{
+					button::MouseOnTop(resume);
+					button::MouseOnTop(menu);
+
+					return;
+				}
+
 				player::Update(pl);
 				obstacule::Update(obs);
 
@@ -64,6 +108,15 @@ namespace game
 			{
 				player::Draw(pl);
 				obstacule::Draw(obs);
+				if (pause)
+				{
+					DrawRect(Rectangle
+						{ 0, 0, static_cast<float>(screenWidth),
+						static_cast<float>(screenHeight) }, Color{ 50,50,50,200 });
+
+					button::Draw(resume);
+					button::Draw(menu);
+				}
 			}
 
 			void DeInit()
