@@ -1,3 +1,4 @@
 *.vs
 FlappyGame/bin
 FlappyGame/obj
+*.zip
