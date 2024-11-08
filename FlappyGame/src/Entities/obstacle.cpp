@@ -1,18 +1,18 @@
-#include "Obstacule.h"
+#include "Obstacle.h"
 
 #include "Utilities/Utils.h"
 
 namespace game
 {
-	namespace obstacule
+	namespace obstacle
 	{
 		const float separation = 1.7f;
 
-		void Move(Obstacule& o);
+		void Move(Obstacle& o);
 
-		Obstacule Create(float x, float y, float width, float height, float speed, bool isAlive)
+		Obstacle Create(float x, float y, float width, float height, float speed, bool isAlive)
 		{
-			Obstacule newO;
+			Obstacle newO;
 
 			Rectangle newR;
 
@@ -36,20 +36,20 @@ namespace game
 			return newO;
 		}
 
-		void Update(Obstacule& o)
+		void Update(Obstacle& o)
 		{
 			o.dir.x = -1.f;
 
 			Move(o);
 		}
 
-		void Draw(Obstacule& o)
+		void Draw(Obstacle& o)
 		{
 			DrawRect(o.body1, RED);
 			DrawRect(o.body2, RED);
 		}
 
-		void SetPosition(Obstacule& o, Vector2 newPos)
+		void SetPosition(Obstacle& o, Vector2 newPos)
 		{
 			o.body1.x = newPos.x;
 			o.body1.y = newPos.y + o.body1.height / separation;
@@ -58,7 +58,7 @@ namespace game
 			o.body2.y = newPos.y - o.body2.height / separation;
 		}
 
-		void Move(Obstacule& o)
+		void Move(Obstacle& o)
 		{
 			o.body1.x += o.dir.x * o.speed * GetFrameTime();
 			o.body1.y += o.dir.y * o.speed * GetFrameTime();

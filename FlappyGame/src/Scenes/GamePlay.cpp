@@ -2,7 +2,7 @@
 
 #include "GameLoop.h"
 
-#include "Entities/Obstacule.h"
+#include "Entities/obstacle.h"
 #include "Entities/Player.h"
 
 #include "UI/Button.h"
@@ -16,7 +16,7 @@ namespace game
 		namespace gameplay
 		{
 			player::Player pl;
-			obstacule::Obstacule obs;
+			obstacle::Obstacle obs;
 
 			button::Button resume;
 			button::Button menu;
@@ -114,7 +114,7 @@ namespace game
 				ParalaxUpdate();
 
 				player::Update(pl);
-				obstacule::Update(obs);
+				obstacle::Update(obs);
 
 				if (obs.body1.x + obs.body1.width < 0)
 				{
@@ -123,7 +123,7 @@ namespace game
 					newPos.x = static_cast<float>(GetScreenWidth());
 					newPos.y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obs.body1.height)));
 
-					obstacule::SetPosition(obs, newPos);
+					obstacle::SetPosition(obs, newPos);
 				}
 
 				if (CheckCollision(pl.body, obs.body1) || CheckCollision(pl.body, obs.body2))
@@ -154,7 +154,7 @@ namespace game
 				DrawTextureEx(midGround, { midGround.width + offsetMid,0 }, 0, 1, transparent);
 
 				player::Draw(pl);
-				obstacule::Draw(obs);
+				obstacle::Draw(obs);
 
 				DrawTextureEx(foreGround, { offsetFore,0 }, 0, 1, WHITE);
 				DrawTextureEx(foreGround, { foreGround.width + offsetFore,0 }, 0, 1, WHITE);
@@ -193,7 +193,7 @@ namespace game
 				pl = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
 
 				x = static_cast<float>(GetScreenWidth() + 20);
-				obs = obstacule::Create(x, randomY, 40, 1000, 500.f);
+				obs = obstacle::Create(x, randomY, 40, 1000, 500.f);
 			}
 
 			void ParalaxUpdate()
