@@ -21,12 +21,48 @@ namespace game
 			button::Button resume;
 			button::Button menu;
 
+			Texture2D backGround;
+			Texture2D midGround;
+			Texture2D foreGround;
+
+			float offsetBack;
+			float offsetMid;
+			float offsetFore;
+
+			float velBack;
+			float velMid;
+			float velFore;
+
 			bool pause;
 
 			void InitEntities();
+			void ParalaxUpdate();
 
 			void Init()
 			{
+				backGround = LoadTexture("res/BackGround.png");
+				midGround = LoadTexture("res/MidGround.png");
+				foreGround = LoadTexture("res/ForeGround.png");
+
+				backGround.width *= GetScreenWidth() / backGround.width;
+				backGround.height *= GetScreenHeight() / backGround.height;
+
+				midGround.width *= GetScreenWidth() / midGround.width;
+				midGround.height *= GetScreenHeight() / midGround.height;
+
+				foreGround.width *= GetScreenWidth() / foreGround.width;
+				foreGround.height *= GetScreenHeight() / foreGround.height;
+
+				offsetBack = 0.0;
+				offsetMid = 0.0;
+				offsetFore = 0.0;
+
+				velBack = 25.f;
+				velMid = 100.f;
+				velFore = 250.f;
+
+				pause = false;
+
 				Rectangle posButton;
 
 				posButton.x = screenWidth / 2.f;
@@ -39,6 +75,7 @@ namespace game
 				posButton.y = screenHeight / 2.f + button::ButtonHeight * 2.4f;
 
 				menu = button::Create(posButton, "Menu");
+
 				InitEntities();
 			}
 
@@ -74,6 +111,8 @@ namespace game
 					return;
 				}
 
+				ParalaxUpdate();
+
 				player::Update(pl);
 				obstacule::Update(obs);
 
@@ -106,8 +145,24 @@ namespace game
 			}
 			void Draw()
 			{
+				Color transparent = { 255,255,255,200 };
+
+				DrawTextureEx(backGround, { offsetBack,0 }, 0, 1, WHITE);
+				DrawTextureEx(backGround, { backGround.width + offsetBack,0 }, 0, 1, WHITE);
+
+				DrawTextureEx(midGround, { offsetMid,0 }, 0, 1, transparent);
+				DrawTextureEx(midGround, { midGround.width + offsetMid,0 }, 0, 1, transparent);
+
 				player::Draw(pl);
 				obstacule::Draw(obs);
+
+				DrawTextureEx(foreGround, { offsetFore,0 }, 0, 1, WHITE);
+				DrawTextureEx(foreGround, { foreGround.width + offsetFore,0 }, 0, 1, WHITE);
+
+				DrawRect(Rectangle
+					{ 0, screenHeight / 5.f, static_cast<float>(screenWidth),
+					static_cast<float>(screenHeight) }, Color{ 37, 107,122,150 });
+
 				if (pause)
 				{
 					DrawRect(Rectangle
@@ -121,6 +176,10 @@ namespace game
 
 			void DeInit()
 			{
+				UnloadTexture(backGround);
+				UnloadTexture(midGround);
+				UnloadTexture(foreGround);
+
 				player::DeInit(pl);
 			}
 
@@ -135,6 +194,13 @@ namespace game
 
 				x = static_cast<float>(GetScreenWidth() + 20);
 				obs = obstacule::Create(x, randomY, 40, 1000, 500.f);
+			}
+
+			void ParalaxUpdate()
+			{
+				offsetBack -= (offsetBack <= static_cast<float>(-backGround.width)) ? offsetBack : velBack * GetFrameTime();
+				offsetMid -= (offsetMid <= static_cast<float>(-midGround.width)) ? offsetMid : velMid * GetFrameTime();
+				offsetFore -= (offsetFore <= static_cast<float>(-foreGround.width)) ? offsetFore : velFore * GetFrameTime();
 			}
 
 		}
