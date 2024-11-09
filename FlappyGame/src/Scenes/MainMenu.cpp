@@ -10,7 +10,7 @@ namespace game
 	{
 		namespace mainmenu
 		{
-			const std::string GameVersion = "Version 0.3";
+			const std::string GameVersion = "Version 0.4";
 			constexpr int maxButtons = 4;
 
 			button::Button buttons[maxButtons];
