@@ -9,9 +9,6 @@
     <ClCompile Include="src\Entities\Player.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Obstacule.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
     <ClCompile Include="src\Scenes\MainMenu.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -27,6 +24,8 @@
     <ClCompile Include="src\UI\Text.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\Obstacle.cpp" />
+    <ClCompile Include="src\Entities\parallax.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameLoop.h" />
@@ -34,9 +33,6 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Player.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Obstacule.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="src\Scenes\Credits.h">
@@ -54,6 +50,8 @@
     <ClInclude Include="src\UI\Text.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entities\Obstacle.h" />
+    <ClInclude Include="src\Entities\parallax.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">
