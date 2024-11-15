@@ -4,6 +4,7 @@
 
 #include "Entities/obstacle.h"
 #include "Entities/Player.h"
+#include "Entities/Parallax.h"
 
 #include "UI/Button.h"
 
@@ -11,24 +12,23 @@
 
 namespace game::scenes::gameplay
 {
-	entities::Player pl;
-	entities::Player pl2;
-	entities::Obstacle obs;
+	using namespace entities;
+	using namespace player;
+	using namespace obstacle;
+	using namespace parallax;
+
+	Player pl;
+	Player pl2;
+	Obstacle obs;
+
+	Parallax background;
+	Parallax midground;
+	Parallax foreground;
 
 	button::Button resume;
 	button::Button menu;
 
-	Texture2D backGround;
-	Texture2D midGround;
-	Texture2D foreGround;
 
-	float offsetBack;
-	float offsetMid;
-	float offsetFore;
-
-	float velBack;
-	float velMid;
-	float velFore;
 
 	constexpr float timerStart = 3.0f;
 	float timer;
@@ -37,33 +37,10 @@ namespace game::scenes::gameplay
 
 	void InitEntities();
 
-	void ParallaxUpdate();
-
 
 
 	void Init()
 	{
-		backGround = LoadTexture("res/BackGround.png");
-		midGround = LoadTexture("res/MidGround.png");
-		foreGround = LoadTexture("res/ForeGround.png");
-
-		backGround.width = GetScreenWidth();
-		backGround.height = GetScreenHeight();
-
-		midGround.width = GetScreenWidth();
-		midGround.height = GetScreenHeight();
-
-		foreGround.width = GetScreenWidth();
-		foreGround.height = GetScreenHeight();
-
-		offsetBack = 0.0;
-		offsetMid = 0.0;
-		offsetFore = 0.0;
-
-		velBack = 25.f;
-		velMid = 100.f;
-		velFore = 250.f;
-
 		pause = false;
 
 		Rectangle posButton;
@@ -128,7 +105,9 @@ namespace game::scenes::gameplay
 				return;
 			}
 
-			ParallaxUpdate();
+			parallax::Update(background);
+			parallax::Update(midground);
+			parallax::Update(foreground);
 
 			player::Update(pl);
 
@@ -207,11 +186,9 @@ namespace game::scenes::gameplay
 	{
 		Color transparent = { 255, 255, 255, 200 };
 
-		DrawTextureEx(backGround, { offsetBack, 0 }, 0, 1, WHITE);
-		DrawTextureEx(backGround, { static_cast<float>(backGround.width) + offsetBack, 0 }, 0, 1, WHITE);
+		parallax::Draw(background);
 
-		DrawTextureEx(midGround, { offsetMid, 0 }, 0, 1, transparent);
-		DrawTextureEx(midGround, { static_cast<float>(midGround.width) + offsetMid, 0 }, 0, 1, transparent);
+		parallax::Draw(midground);
 
 		player::Draw(pl);
 
@@ -220,8 +197,7 @@ namespace game::scenes::gameplay
 
 		obstacle::Draw(obs);
 
-		DrawTextureEx(foreGround, { offsetFore, 0 }, 0, 1, WHITE);
-		DrawTextureEx(foreGround, { static_cast<float>(foreGround.width) + offsetFore, 0 }, 0, 1, WHITE);
+		parallax::Draw(foreground);
 
 		DrawRect(Rectangle{ 0,
 		                    static_cast<float>(screenHeight) / 5.0f,
@@ -250,9 +226,9 @@ namespace game::scenes::gameplay
 
 	void DeInit()
 	{
-		UnloadTexture(backGround);
-		UnloadTexture(midGround);
-		UnloadTexture(foreGround);
+		parallax::Deinit(background);
+		parallax::Deinit(midground);
+		parallax::Deinit(foreground);
 
 		player::DeInit(pl);
 		if(isMultiplayer)
@@ -268,20 +244,15 @@ namespace game::scenes::gameplay
 		float x = static_cast<float>(GetScreenWidth()) / 4.0f;
 		float y = static_cast<float>(GetScreenHeight()) / 2.0f;
 
+		parallax::Init(background, "res/BackGround.png", 25.0f);
+		parallax::Init(midground, "res/MidGround.png", 100.0f);
+		parallax::Init(foreground, "res/ForeGround.png", 250.0f);
+
 		pl = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
 		if(isMultiplayer)
 			pl2 = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
 
 		x = static_cast<float>(GetScreenWidth() + 20);
 		obs = obstacle::Create(x, randomY, 40, 1000, 500.f);
-	}
-
-
-
-	void ParallaxUpdate()
-	{
-		offsetBack -= (offsetBack <= static_cast<float>(-backGround.width)) ? offsetBack : velBack * GetFrameTime();
-		offsetMid -= (offsetMid <= static_cast<float>(-midGround.width)) ? offsetMid : velMid * GetFrameTime();
-		offsetFore -= (offsetFore <= static_cast<float>(-foreGround.width)) ? offsetFore : velFore * GetFrameTime();
 	}
 }
