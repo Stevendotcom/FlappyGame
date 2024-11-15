@@ -6,7 +6,7 @@ AllowShortIfStatementsOnASingleLine: false
 BraceWrapping: 
   AfterCaseLabel: false
   AfterClass: true
-  AfterControlStatement: false
+  AfterControlStatement: true
   AfterEnum: true
   AfterFunction: false
   AfterNamespace: true

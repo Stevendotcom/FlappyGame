@@ -40,7 +40,17 @@ namespace game
 				for (int i = 0; i < maxButtons; i++)
 				{
 					if (button::IsPressed(buttons[i]))
+					{
 						currentScene = static_cast<Scene>(i + 1);
+						if(static_cast<Scene>(i + 1) == Scene::GameplayMultiplayer)
+						{
+							isMultiplayer = true;
+						}
+						else
+						{
+							isMultiplayer = false;
+						}
+					}
 				}
 			}
 			void Update()

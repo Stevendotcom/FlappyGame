@@ -4,7 +4,6 @@
 
 #include "Scenes/Credits.h"
 #include "Scenes/GamePlay.h"
-#include "Scenes/GamePlayMultiplayer.h"
 #include "Scenes/MainMenu.h"
 
 using namespace game::scenes;
@@ -21,6 +20,8 @@ namespace game
 	auto prevScene = Scene::Menu;
 
 	bool programLoop = true;
+
+	bool isMultiplayer = false;
 
 	static void Init();
 
@@ -54,7 +55,6 @@ namespace game
 
 		mainmenu::Init();
 		gameplay::Init();
-		gameplayMultiplayer::Init();
 		credits::Init();
 	}
 
@@ -66,15 +66,14 @@ namespace game
 			mainmenu::Input();
 			break;
 
+		case Scene::GameplayMultiplayer:
+			__fallthrough
 		case Scene::Gameplay:
 			gameplay::Input();
 			break;
 
 		case Scene::Credits:
 			credits::Input();
-			break;
-		case Scene::GameplayMultiplayer:
-			gameplayMultiplayer::Input();
 			break;
 		}
 	}
@@ -87,12 +86,10 @@ namespace game
 			mainmenu::Update();
 			break;
 
+		case Scene::GameplayMultiplayer:
+			__fallthrough
 		case Scene::Gameplay:
 			gameplay::Update();
-			break;
-
-		case Scene::GameplayMultiplayer:
-			gameplayMultiplayer::Update();
 			break;
 
 		case Scene::Credits:
@@ -117,12 +114,10 @@ namespace game
 			mainmenu::Draw();
 			break;
 
+		case Scene::GameplayMultiplayer:
+			__fallthrough
 		case Scene::Gameplay:
 			gameplay::Draw();
-			break;
-
-		case Scene::GameplayMultiplayer:
-			gameplayMultiplayer::Draw();
 			break;
 
 		case Scene::Credits:
@@ -137,7 +132,6 @@ namespace game
 	{
 		mainmenu::DeInit();
 		gameplay::DeInit();
-		gameplayMultiplayer::DeInit();
 		credits::DeInit();
 
 		CloseWindow();

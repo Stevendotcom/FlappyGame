@@ -24,5 +24,7 @@ namespace game
 
 	extern bool programLoop;
 
+	extern bool isMultiplayer;
+
 	void Play();
 }
