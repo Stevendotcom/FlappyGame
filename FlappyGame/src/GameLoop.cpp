@@ -23,6 +23,8 @@ namespace game
 
 	bool isMultiplayer = false;
 
+	float timer = 0;
+
 	static void Init();
 
 	static void Input();
@@ -67,7 +69,6 @@ namespace game
 			break;
 
 		case Scene::GameplayMultiplayer:
-			__fallthrough
 		case Scene::Gameplay:
 			gameplay::Input();
 			break;
@@ -87,7 +88,7 @@ namespace game
 			break;
 
 		case Scene::GameplayMultiplayer:
-			__fallthrough
+
 		case Scene::Gameplay:
 			gameplay::Update();
 			break;
@@ -115,7 +116,6 @@ namespace game
 			break;
 
 		case Scene::GameplayMultiplayer:
-			__fallthrough
 		case Scene::Gameplay:
 			gameplay::Draw();
 			break;

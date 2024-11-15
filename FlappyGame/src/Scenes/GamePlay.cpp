@@ -30,9 +30,7 @@ namespace game::scenes::gameplay
 
 
 
-	constexpr float timerStart = 3.0f;
-	float timer;
-
+	float timerStart = 3.0f;
 	bool pause;
 
 	void InitEntities();
@@ -128,6 +126,7 @@ namespace game::scenes::gameplay
 			}
 
 			if(isMultiplayer)
+			{
 				if (CheckCollision(pl.body, obs.body1) || CheckCollision(pl.body, obs.body2) || CheckCollision(
 					    pl2.body, obs.body1) || CheckCollision(pl2.body, obs.body2))
 				{
@@ -156,6 +155,7 @@ namespace game::scenes::gameplay
 						currentScene = Scene::Menu;
 					}
 				}
+			}
 			else
 			{
 				if (CheckCollision(pl.body, obs.body1) || CheckCollision(pl.body, obs.body2))
@@ -184,7 +184,6 @@ namespace game::scenes::gameplay
 
 	void Draw()
 	{
-		Color transparent = { 255, 255, 255, 200 };
 
 		parallax::Draw(background);
 

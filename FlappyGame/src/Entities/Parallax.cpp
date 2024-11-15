@@ -28,4 +28,10 @@ namespace game::entities::parallax
 		DrawTextureEx(parallax.texture, { parallax.offset, 0 }, 0, 1, WHITE);
 		DrawTextureEx(parallax.texture, { static_cast<float>(parallax.texture.width) + parallax.offset, 0 }, 0, 1, WHITE);
 	}
+
+
+
+	void Deinit(const Parallax &parallax) {
+		UnloadTexture(parallax.texture);
+	}
 }

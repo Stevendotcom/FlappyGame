@@ -41,6 +41,7 @@ namespace game::scenes::mainmenu
 				if(static_cast<Scene>(i + 1) == Scene::GameplayMultiplayer)
 				{
 					isMultiplayer = true;
+					timer = 0;
 				}
 				else
 				{

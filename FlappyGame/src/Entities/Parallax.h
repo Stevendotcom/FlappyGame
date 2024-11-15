@@ -16,5 +16,5 @@ namespace game::entities::parallax
 	void Init(Parallax& parallax, const std::string &texturePath, float velocity);
 	void Update(Parallax& parallax);
 	void Draw(const Parallax &parallax);
-	void Deinit(Parallax& parallax);
+	void Deinit(const Parallax& parallax);
 }

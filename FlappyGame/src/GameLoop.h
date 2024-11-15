@@ -26,5 +26,7 @@ namespace game
 
 	extern bool isMultiplayer;
 
+	extern float timer;
+
 	void Play();
 }

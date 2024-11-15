@@ -41,13 +41,13 @@ namespace game::entities::obstacle
 		Move(o);
 	}
 
-	void Draw(Obstacle& o)
+	void Draw(const Obstacle& o)
 	{
 		DrawRect(o.body1, RED);
 		DrawRect(o.body2, RED);
 	}
 
-	void SetPosition(Obstacle& o, Vector2 newPos)
+	void SetPosition(Obstacle& o, const Vector2 newPos)
 	{
 		o.body1.x = newPos.x;
 		o.body1.y = newPos.y + o.body1.height / separation;
