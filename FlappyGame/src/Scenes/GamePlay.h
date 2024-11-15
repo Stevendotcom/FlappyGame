@@ -1,16 +1,10 @@
 #pragma once
 
-namespace game
+namespace game::scenes::gameplay
 {
-	namespace scenes
-	{
-		namespace gameplay
-		{
-			void Init();
-			void Input();
-			void Update();
-			void Draw();
-			void DeInit();
-		}
-	}
+	void Init();
+	void Input();
+	void Update();
+	void Draw();
+	void DeInit();
 }

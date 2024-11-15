@@ -1,18 +1,12 @@
 #pragma once
 
-namespace game
+namespace game::scenes::credits
 {
-	namespace scenes
-	{
-		namespace credits
-		{
-			void Init();
+	void Init();
 
-			void Input();
-			void Update();
-			void Draw();
+	void Input();
+	void Update();
+	void Draw();
 
-			void DeInit();
-		}
-	}
+	void DeInit();
 }

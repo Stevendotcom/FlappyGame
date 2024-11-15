@@ -1,18 +1,12 @@
 #pragma once
 
-namespace game
+namespace game::scenes::mainmenu
 {
-	namespace scenes
-	{
-		namespace mainmenu
-		{
-			void Init();
+	void Init();
 
-			void Input();
-			void Update();
-			void Draw();
+	void Input();
+	void Update();
+	void Draw();
 
-			void DeInit();
-		}
-	}
+	void DeInit();
 }
