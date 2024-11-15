@@ -248,8 +248,7 @@ namespace game::scenes::gameplay
 		parallax::Init(foreground, "res/ForeGround.png", 250.0f);
 
 		pl = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
-		if(isMultiplayer)
-			pl2 = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
+		pl2 = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
 
 		x = static_cast<float>(GetScreenWidth() + 20);
 		obs = obstacle::Create(x, randomY, 40, 1000, 500.f);
