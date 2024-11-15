@@ -2,7 +2,7 @@
 
 #include "raylib.h"
 
-namespace game::player
+namespace game::entities
 {
 	struct Player
 	{

@@ -2,7 +2,7 @@
 
 #include "raylib.h"
 
-namespace game::obstacle
+namespace game::entities
 {
 	struct Obstacle
 	{

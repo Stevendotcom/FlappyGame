@@ -11,9 +11,9 @@
 
 namespace game::scenes::gameplay
 {
-	player::Player pl;
-	player::Player pl2;
-	obstacle::Obstacle obs;
+	entities::Player pl;
+	entities::Player pl2;
+	entities::Obstacle obs;
 
 	button::Button resume;
 	button::Button menu;

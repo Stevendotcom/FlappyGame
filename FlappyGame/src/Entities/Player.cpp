@@ -2,7 +2,7 @@
 
 #include "Utilities/Utils.h"
 
-namespace game::player
+namespace game::entities
 {
 	void Gravity(Player& p);
 	void Move(Player& p);

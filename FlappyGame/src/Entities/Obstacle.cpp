@@ -2,7 +2,7 @@
 
 #include "Utilities/Utils.h"
 
-namespace game::obstacle
+namespace game::entities
 {
 	const float separation = 1.7f;
 
