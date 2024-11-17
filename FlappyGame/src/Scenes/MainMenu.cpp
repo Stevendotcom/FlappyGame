@@ -6,7 +6,7 @@
 
 namespace game::scenes::mainmenu
 {
-	const std::string GameVersion = "Version 0.4";
+	const std::string GameVersion = "Version 1.0";
 	constexpr int maxButtons = 4;
 
 	button::Button buttons[maxButtons];

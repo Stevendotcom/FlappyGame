@@ -4,13 +4,17 @@
 
 namespace game::entities::player
 {
-	void Gravity(Player& p);
-	void Move(Player& p);
-	void Jump(Player& p);
+	void Gravity(Player &p);
 
-	void Animation(Player& p);
+	void Move(Player &p);
 
-	Player Create(Rectangle body, float speed, bool isAlive)
+	void Jump(Player &p);
+
+	void Animation(Player &p);
+
+
+
+	Player Create(Rectangle body, float speed, bool isAlive, bool secondPlayer)
 	{
 		Player newP;
 
@@ -23,7 +27,10 @@ namespace game::entities::player
 		newP.origin = Vector2{ body.width, body.height };
 		newP.source = Rectangle{ 0, 0, 32, 32 };
 
-		newP.texture = LoadTexture("res/Cannon.png");
+		if (secondPlayer)
+			newP.texture = LoadTexture("res/Cannon2.png");
+		else
+			newP.texture = LoadTexture("res/Cannon.png");
 
 		newP.animationStage = 0;
 		newP.maxAnimationStage = 4;
@@ -39,7 +46,9 @@ namespace game::entities::player
 		return newP;
 	}
 
-	void Input(Player& p, int key)
+
+
+	void Input(Player &p, int key)
 	{
 		if (IsKeyPressed(key))
 		{
@@ -47,7 +56,9 @@ namespace game::entities::player
 		}
 	}
 
-	void Update(Player& p)
+
+
+	void Update(Player &p)
 	{
 		Move(p);
 		//Jump(p);
@@ -58,7 +69,9 @@ namespace game::entities::player
 		p.timer -= (GetFrameTime() < p.timer) ? GetFrameTime() : p.timer;
 	}
 
-	void Draw(Player& p)
+
+
+	void Draw(Player &p)
 	{
 #ifdef _DEBUG
 		DrawRect(p.body, BLUE);
@@ -67,35 +80,48 @@ namespace game::entities::player
 		DrawTexturePro(p.texture, p.source, p.body, p.origin, 195, WHITE);
 	}
 
-	void DeInit(Player& p)
+
+
+	void DeInit(Player &p)
 	{
 		UnloadTexture(p.texture);
 	}
 
-	void Gravity(Player& p)
+
+
+	void Gravity(Player &p)
 	{
 		p.velocity.y += 980.f * GetFrameTime();
 	}
 
-	void Move(Player& p)
+
+
+	void Move(Player &p)
 	{
 		p.body.x += p.velocity.x * p.speed * GetFrameTime();
 		p.body.y += p.velocity.y * GetFrameTime();
 	}
-	void Jump(Player& p)
+
+
+
+	void Jump(Player &p)
 	{
 		p.velocity.y = -350.f;
 		p.activeAnimation = true;
 		p.animationStage = 1;
 
 	}
-	void Animation(Player& p)
+
+
+
+	void Animation(Player &p)
 	{
 		if (p.activeAnimation && p.timer <= 0)
 		{
 			p.source.y = p.source.height * static_cast<float>(p.animationStage);
 
-			switch (p.animationStage) {
+			switch (p.animationStage)
+			{
 			case 0:
 				p.activeAnimation = false;
 				p.animationStage++;

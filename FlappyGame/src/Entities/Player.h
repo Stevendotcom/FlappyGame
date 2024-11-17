@@ -26,7 +26,7 @@ namespace game::entities::player
 		bool isAlive;
 	};
 
-	Player Create(Rectangle body, float speed = 100.f, bool isAlive = true);
+	Player Create(Rectangle body, float speed = 100.f, bool isAlive = true, bool secondPlayer = false);
 
 	void Input(Player& p, int key = KEY_SPACE);
 	void Update(Player& p);
