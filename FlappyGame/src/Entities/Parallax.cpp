@@ -1,4 +1,4 @@
-#include "parallax.h"
+#include "Parallax.h"
 
 
 namespace game::entities::parallax
