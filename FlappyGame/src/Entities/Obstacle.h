@@ -19,8 +19,8 @@ namespace game::entities::obstacle
 
 	Obstacle Create(float x, float y, float width, float height, float speed = 50.f, bool isAlive = false);
 
-	void Update(Obstacle &o);
-	void Draw(const Obstacle &o);
+	void Update(Obstacle &obstacle);
+	void Draw(const Obstacle &obstacle);
 
-	void SetPosition(Obstacle &o, Vector2 newPos);
+	void SetPosition(Obstacle &obstacle, Vector2 newPos);
 }

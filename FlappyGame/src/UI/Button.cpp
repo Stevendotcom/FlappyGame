@@ -6,23 +6,23 @@ namespace button
 {
 	Button Create(const Rectangle &graph, const std::string &text, int fontSize, Color textColor)
 	{
-		Button newB;
+		Button newButton;
 
-		newB.graph = graph;
+		newButton.graph = graph;
 
-		SetPosition(newB, Vector2{ graph.x, graph.y });
+		SetPosition(newButton, Vector2{ graph.x, graph.y });
 
-		newB.text.text = text;
-		newB.text.font = fontSize;
-		newB.text.color = textColor;
+		newButton.text.text = text;
+		newButton.text.font = fontSize;
+		newButton.text.color = textColor;
 
-		newB.isMouseOnTop = false;
-		newB.isPressed = false;
-		newB.isReleased = false;
+		newButton.isMouseOnTop = false;
+		newButton.isPressed = false;
+		newButton.isReleased = false;
 
-		SetText(newB, text);
+		SetText(newButton, text);
 
-		return newB;
+		return newButton;
 	}
 
 	Vector2 GetCenterPosition(const Button &button)

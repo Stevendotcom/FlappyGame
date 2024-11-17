@@ -6,62 +6,62 @@ namespace game::entities::obstacle
 {
 	const float separation = 1.7f;
 
-	void Move(Obstacle& o);
+	void Move(Obstacle& obstacle);
 
 	Obstacle Create(float x, float y, float width, float height, float speed, bool isAlive)
 	{
-		Obstacle newO;
+		Obstacle newObstacle;
 
-		Rectangle newR;
+		Rectangle newRectangle;
 
-		newR.x = x - width / 2;
-		newR.y = y - height / 2;
+		newRectangle.x = x - width / 2;
+		newRectangle.y = y - height / 2;
 
-		newR.width = width;
-		newR.height = height;
+		newRectangle.width = width;
+		newRectangle.height = height;
 
-		newO.body1 = newR;
-		newO.body1.y += newO.body1.height / separation;
+		newObstacle.body1 = newRectangle;
+		newObstacle.body1.y += newObstacle.body1.height / separation;
 
-		newO.body2 = newR;
-		newO.body2.y -= newO.body2.height / separation;
+		newObstacle.body2 = newRectangle;
+		newObstacle.body2.y -= newObstacle.body2.height / separation;
 
-		newO.dir = Vector2{ 0, 0 };
+		newObstacle.dir = Vector2{ 0, 0 };
 
-		newO.speed = speed;
-		newO.isAlive = isAlive;
+		newObstacle.speed = speed;
+		newObstacle.isAlive = isAlive;
 
-		return newO;
+		return newObstacle;
 	}
 
-	void Update(Obstacle& o)
+	void Update(Obstacle& obstacle)
 	{
-		o.dir.x = -1.f;
+		obstacle.dir.x = -1.f;
 
-		Move(o);
+		Move(obstacle);
 	}
 
-	void Draw(const Obstacle& o)
+	void Draw(const Obstacle& obstacle)
 	{
-		DrawRect(o.body1, RED);
-		DrawRect(o.body2, RED);
+		DrawRect(obstacle.body1, RED);
+		DrawRect(obstacle.body2, RED);
 	}
 
-	void SetPosition(Obstacle& o, const Vector2 newPos)
+	void SetPosition(Obstacle& obstacle, const Vector2 newPos)
 	{
-		o.body1.x = newPos.x;
-		o.body1.y = newPos.y + o.body1.height / separation;
+		obstacle.body1.x = newPos.x;
+		obstacle.body1.y = newPos.y + obstacle.body1.height / separation;
 
-		o.body2.x = newPos.x;
-		o.body2.y = newPos.y - o.body2.height / separation;
+		obstacle.body2.x = newPos.x;
+		obstacle.body2.y = newPos.y - obstacle.body2.height / separation;
 	}
 
-	void Move(Obstacle& o)
+	void Move(Obstacle& obstacle)
 	{
-		o.body1.x += o.dir.x * o.speed * GetFrameTime();
-		o.body1.y += o.dir.y * o.speed * GetFrameTime();
+		obstacle.body1.x += obstacle.dir.x * obstacle.speed * GetFrameTime();
+		obstacle.body1.y += obstacle.dir.y * obstacle.speed * GetFrameTime();
 
-		o.body2.x += o.dir.x * o.speed * GetFrameTime();
-		o.body2.y += o.dir.y * o.speed * GetFrameTime();
+		obstacle.body2.x += obstacle.dir.x * obstacle.speed * GetFrameTime();
+		obstacle.body2.y += obstacle.dir.y * obstacle.speed * GetFrameTime();
 	}
 }

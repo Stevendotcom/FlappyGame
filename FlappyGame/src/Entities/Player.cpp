@@ -4,138 +4,138 @@
 
 namespace game::entities::player
 {
-	void Gravity(Player &p);
+	void Gravity(Player &player);
 
-	void Move(Player &p);
+	void Move(Player &player);
 
-	void Jump(Player &p);
+	void Jump(Player &player);
 
-	void Animation(Player &p);
+	void Animation(Player &player);
 
 
 
 	Player Create(Rectangle body, float speed, bool isAlive, bool secondPlayer)
 	{
-		Player newP;
+		Player newPlayer;
 
 		body.x -= body.width / 2;
 		body.y -= body.height / 2;
 
-		newP.body = body;
-		newP.velocity = Vector2{ 0, 0 };
+		newPlayer.body = body;
+		newPlayer.velocity = Vector2{ 0, 0 };
 
-		newP.origin = Vector2{ body.width, body.height };
-		newP.source = Rectangle{ 0, 0, 32, 32 };
+		newPlayer.origin = Vector2{ body.width, body.height };
+		newPlayer.source = Rectangle{ 0, 0, 32, 32 };
 
 		if (secondPlayer)
-			newP.texture = LoadTexture("res/Cannon2.png");
+			newPlayer.texture = LoadTexture("res/Cannon2.png");
 		else
-			newP.texture = LoadTexture("res/Cannon.png");
+			newPlayer.texture = LoadTexture("res/Cannon.png");
 
-		newP.animationStage = 0;
-		newP.maxAnimationStage = 4;
+		newPlayer.animationStage = 0;
+		newPlayer.maxAnimationStage = 4;
 
-		newP.speed = speed;
+		newPlayer.speed = speed;
 
-		newP.timer = 0.f;
-		newP.resetTimer = 0.05f;
+		newPlayer.timer = 0.f;
+		newPlayer.resetTimer = 0.05f;
 
-		newP.activeAnimation = false;
-		newP.isAlive = isAlive;
+		newPlayer.activeAnimation = false;
+		newPlayer.isAlive = isAlive;
 
-		return newP;
+		return newPlayer;
 	}
 
 
 
-	void Input(Player &p, int key)
+	void Input(Player &player, int key)
 	{
 		if (IsKeyPressed(key))
 		{
-			Jump(p);
+			Jump(player);
 		}
 	}
 
 
 
-	void Update(Player &p)
+	void Update(Player &player)
 	{
-		Move(p);
+		Move(player);
 		//Jump(p);
-		Gravity(p);
+		Gravity(player);
 
-		Animation(p);
+		Animation(player);
 
-		p.timer -= (GetFrameTime() < p.timer) ? GetFrameTime() : p.timer;
+		player.timer -= (GetFrameTime() < player.timer) ? GetFrameTime() : player.timer;
 	}
 
 
 
-	void Draw(Player &p)
+	void Draw(Player &player)
 	{
 #ifdef _DEBUG
 		DrawRect(p.body, BLUE);
 #endif // _DEBUG
 
-		DrawTexturePro(p.texture, p.source, p.body, p.origin, 195, WHITE);
+		DrawTexturePro(player.texture, player.source, player.body, player.origin, 195, WHITE);
 	}
 
 
 
-	void DeInit(Player &p)
+	void DeInit(Player &player)
 	{
-		UnloadTexture(p.texture);
+		UnloadTexture(player.texture);
 	}
 
 
 
-	void Gravity(Player &p)
+	void Gravity(Player &player)
 	{
-		p.velocity.y += 980.f * GetFrameTime();
+		player.velocity.y += 980.f * GetFrameTime();
 	}
 
 
 
-	void Move(Player &p)
+	void Move(Player &player)
 	{
-		p.body.x += p.velocity.x * p.speed * GetFrameTime();
-		p.body.y += p.velocity.y * GetFrameTime();
+		player.body.x += player.velocity.x * player.speed * GetFrameTime();
+		player.body.y += player.velocity.y * GetFrameTime();
 	}
 
 
 
-	void Jump(Player &p)
+	void Jump(Player &player)
 	{
-		p.velocity.y = -350.f;
-		p.activeAnimation = true;
-		p.animationStage = 1;
+		player.velocity.y = -350.f;
+		player.activeAnimation = true;
+		player.animationStage = 1;
 
 	}
 
 
 
-	void Animation(Player &p)
+	void Animation(Player &player)
 	{
-		if (p.activeAnimation && p.timer <= 0)
+		if (player.activeAnimation && player.timer <= 0)
 		{
-			p.source.y = p.source.height * static_cast<float>(p.animationStage);
+			player.source.y = player.source.height * static_cast<float>(player.animationStage);
 
-			switch (p.animationStage)
+			switch (player.animationStage)
 			{
 			case 0:
-				p.activeAnimation = false;
-				p.animationStage++;
+				player.activeAnimation = false;
+				player.animationStage++;
 				break;
 
 			case 4:
-				p.animationStage = 0;
+				player.animationStage = 0;
 				break;
 			}
 
-			if (p.animationStage != 0)
-				p.animationStage++;
+			if (player.animationStage != 0)
+				player.animationStage++;
 
-			p.timer = p.resetTimer;
+			player.timer = player.resetTimer;
 		}
 	}
 }

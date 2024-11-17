@@ -17,9 +17,9 @@ namespace game::scenes::gameplay
 	using namespace obstacle;
 	using namespace parallax;
 
-	Player pl;
-	Player pl2;
-	Obstacle obs;
+	Player player;
+	Player player2;
+	Obstacle obstacle;
 
 	Parallax background;
 	Parallax midground;
@@ -79,11 +79,11 @@ namespace game::scenes::gameplay
 				return;
 			}
 			if(!isMultiplayer)
-				player::Input(pl);
+				player::Input(player);
 			else
 			{
-				player::Input(pl, KEY_W);
-				player::Input(pl2, KEY_UP);
+				player::Input(player, KEY_W);
+				player::Input(player2, KEY_UP);
 			}
 		}
 	}
@@ -107,49 +107,49 @@ namespace game::scenes::gameplay
 			parallax::Update(midground);
 			parallax::Update(foreground);
 
-			player::Update(pl);
+			player::Update(player);
 
 			if (isMultiplayer)
-				player::Update(pl2);
+				player::Update(player2);
 
-			obstacle::Update(obs);
+			obstacle::Update(obstacle);
 
-			if (obs.body1.x + obs.body1.width < 0)
+			if (obstacle.body1.x + obstacle.body1.width < 0)
 			{
 				Vector2 newPos;
 
 				newPos.x = static_cast<float>(GetScreenWidth());
 				newPos.y = static_cast<float>(
-					GetRandomValue(0, GetScreenHeight() - static_cast<int>(obs.body1.height)));
+					GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
 
-				obstacle::SetPosition(obs, newPos);
+				obstacle::SetPosition(obstacle, newPos);
 			}
 
 			if(isMultiplayer)
 			{
-				if (CheckCollision(pl.body, obs.body1) || CheckCollision(pl.body, obs.body2) || CheckCollision(
-					    pl2.body, obs.body1) || CheckCollision(pl2.body, obs.body2))
+				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2) || CheckCollision(
+					    player2.body, obstacle.body1) || CheckCollision(player2.body, obstacle.body2))
 				{
 					InitEntities();
 					currentScene = Scene::Menu;
 				}
 
-				if (CheckBorderCollision(pl.body, GetScreenWidth(), 0, GetScreenHeight(), 0) || CheckBorderCollision(
-					pl2.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
+				if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0) || CheckBorderCollision(
+					player2.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
 				{
-					if (pl.body.y < 0)
-						pl.body.y = 0;
+					if (player.body.y < 0)
+						player.body.y = 0;
 
-					if (pl.body.y + pl.body.height > static_cast<float>(GetScreenHeight()))
+					if (player.body.y + player.body.height > static_cast<float>(GetScreenHeight()))
 					{
 						InitEntities();
 						currentScene = Scene::Menu;
 					}
 
-					if (pl2.body.y < 0)
-						pl2.body.y = 0;
+					if (player2.body.y < 0)
+						player2.body.y = 0;
 
-					if (pl2.body.y + pl2.body.height > static_cast<float>(GetScreenHeight()))
+					if (player2.body.y + player2.body.height > static_cast<float>(GetScreenHeight()))
 					{
 						InitEntities();
 						currentScene = Scene::Menu;
@@ -158,17 +158,17 @@ namespace game::scenes::gameplay
 			}
 			else
 			{
-				if (CheckCollision(pl.body, obs.body1) || CheckCollision(pl.body, obs.body2))
+				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2))
 				{
 					InitEntities();
 					timer = 3.0f;
 					currentScene = Scene::Menu;
 				}
-				if (CheckBorderCollision(pl.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
+				if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
 				{
-					if (pl.body.y < 0)
-						pl.body.y = 0;
-					if (pl.body.y + pl.body.height > static_cast<float>(GetScreenHeight()))
+					if (player.body.y < 0)
+						player.body.y = 0;
+					if (player.body.y + player.body.height > static_cast<float>(GetScreenHeight()))
 					{
 						InitEntities();
 						currentScene = Scene::Menu;
@@ -189,12 +189,12 @@ namespace game::scenes::gameplay
 
 		parallax::Draw(midground);
 
-		player::Draw(pl);
+		player::Draw(player);
 
 		if(isMultiplayer)
-			player::Draw(pl2);
+			player::Draw(player2);
 
-		obstacle::Draw(obs);
+		obstacle::Draw(obstacle);
 
 		parallax::Draw(foreground);
 
@@ -229,16 +229,16 @@ namespace game::scenes::gameplay
 		parallax::Deinit(midground);
 		parallax::Deinit(foreground);
 
-		player::DeInit(pl);
+		player::DeInit(player);
 		if(isMultiplayer)
-			player::DeInit(pl2);
+			player::DeInit(player2);
 	}
 
 
 
 	void InitEntities()
 	{
-		float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obs.body1.height / 2)));
+		float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obstacle.body1.height / 2)));
 
 		float x = static_cast<float>(GetScreenWidth()) / 4.0f;
 		float y = static_cast<float>(GetScreenHeight()) / 2.0f;
@@ -247,10 +247,10 @@ namespace game::scenes::gameplay
 		parallax::Init(midground, "res/MidGround.png", 100.0f);
 		parallax::Init(foreground, "res/ForeGround.png", 250.0f);
 
-		pl = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
-		pl2 = player::Create(Rectangle{ x, y, 60, 60 }, 300.f, true, true);
+		player = player::Create(Rectangle{ x, y, 60, 60 }, 300.f);
+		player2 = player::Create(Rectangle{ x, y, 60, 60 }, 300.f, true, true);
 
 		x = static_cast<float>(GetScreenWidth() + 20);
-		obs = obstacle::Create(x, randomY, 40, 1000, 500.f);
+		obstacle = obstacle::Create(x, randomY, 40, 1000, 500.f);
 	}
 }
