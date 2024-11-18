@@ -28,6 +28,7 @@ namespace game::utils::soundManager
 	static int newSoundPos = 0;
 
 
+
 	void Init()
 	{
 		mainMenu = LoadMusicStream("res/StrangeFarm.ogg");
@@ -41,5 +42,20 @@ namespace game::utils::soundManager
 
 
 
+	void DeInit()
+	{
+		for (auto sound : soundBuffer)
+		{
+			UnloadSoundAlias(sound);
+		}
+
+		UnloadMusicStream(mainMenu);
+		UnloadMusicStream(gameMusic);
+		UnloadSound(Jump);
+		UnloadSound(Hover);
+		UnloadSound(Click);
+		UnloadSound(Crash);
+		UnloadSound(PauseUp);
+	}
 
 }
