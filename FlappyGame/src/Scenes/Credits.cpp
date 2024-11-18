@@ -3,58 +3,101 @@
 #include "GameLoop.h"
 
 #include "UI/Button.h"
+#include "Utilities/SoundManager.h"
 
 namespace game::scenes::credits
 {
-	button::Button back;
-	button::Button emaButton;
-	button::Button nicoButton;
+	const int maxButtons = 3;
+
+	button::Button buttons[maxButtons];
+
+	static bool wasOnTop[maxButtons] = {false};
+	static bool isOnTop[maxButtons] = {false};
+
+	enum Buttons
+	{
+		back,
+		emaButton,
+		nicoButton,
+	};
+
+
 
 	void Init()
 	{
 		float x = button::ButtonWidth / 2;
 		float y = button::ButtonHeight / 2;
 
-		Rectangle graph = { x,y,button::ButtonWidth,button::ButtonHeight };
+		Rectangle graph = { x, y, button::ButtonWidth, button::ButtonHeight };
 
-		back = button::Create(graph,"Back");
+		buttons[back] = button::Create(graph, "Back");
 
 		graph.x = (static_cast<float>(GetScreenWidth()) / 2.f);
 		graph.y = (static_cast<float>(GetScreenHeight()) / 2.f);
-		emaButton = button::Create(graph, "Emanuel Parajon");
+		buttons[emaButton] = button::Create(graph, "Emanuel Parajon");
 
 		graph.y = (static_cast<float>(GetScreenHeight()) / 2.f + 100);
-		nicoButton = button::Create(graph, "Nicolas Gallardo");
+		buttons[nicoButton] = button::Create(graph, "Nicolas Gallardo");
 	}
+
+
 
 	void Input()
 	{
-		if (button::IsPressed(back))
-			currentScene = Scene::Menu;
-		if (button::IsPressed(emaButton))
-			OpenURL("https://frostpower.itch.io/");
-		if (button::IsPressed(nicoButton))
-			OpenURL("https://projectbifron.itch.io");
+		for (int i = 0; i < maxButtons; i++)
+		{
+			if (button::IsPressed(buttons[i]))
+			{
+				AddToBuffer(utils::soundManager::Sounds::Click);
+				switch (i)
+				{
+				case back:
+					currentScene = Scene::Menu;
+					break;
+				case emaButton:
+					OpenURL("https://frostpower.itch.io/");
+					break;
+				case nicoButton:
+					OpenURL("https://projectbifron.itch.io");
+					break;
+				}
+			}
+		}
 	}
+
+
+
 	void Update()
 	{
-		button::MouseOnTop(back);
-		button::MouseOnTop(emaButton);
-		button::MouseOnTop(nicoButton);
+		for (int i = 0; i < maxButtons; i++)
+		{
+			isOnTop[i] = button::MouseOnTop(buttons[i]);
+			if (isOnTop[i])
+			{
+				if (!wasOnTop[i])
+					AddToBuffer(utils::soundManager::Sounds::Hover);
+				wasOnTop[i] = true;
+			}
+			else
+				wasOnTop[i] = false;
+		}
 	}
+
+
+
 	void Draw()
 	{
-		button::Draw(back);
-		DrawText("Lead Programmer", static_cast<int>(GetCenterPosition(emaButton).x) - MeasureText("Lead Programmer",32), static_cast<int>(GetCenterPosition(emaButton).y) - 60, 32, BLACK );
-		button::Draw(emaButton);
+		button::Draw(buttons[back]);
+		DrawText("Lead Programmer", static_cast<int>(GetCenterPosition(buttons[emaButton]).x) - MeasureText("Lead Programmer", 32),
+		         static_cast<int>(GetCenterPosition(buttons[emaButton]).y) - 60, 32, BLACK);
+		button::Draw(buttons[emaButton]);
 
-		DrawText("Junior Programmer", static_cast<int>(GetCenterPosition(nicoButton).x), static_cast<int>(GetCenterPosition(nicoButton).y)
-		                                                                                 - 60, 32, BLACK );
-		button::Draw(nicoButton);
+		DrawText("Junior Programmer", static_cast<int>(GetCenterPosition(buttons[nicoButton]).x), static_cast<int>(GetCenterPosition(buttons[nicoButton]).y) - 60, 32, BLACK);
+		button::Draw(buttons[nicoButton]);
 	}
+
+
 
 	void DeInit()
-	{
-
-	}
+	{}
 }
