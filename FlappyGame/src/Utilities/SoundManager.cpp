@@ -38,6 +38,8 @@ namespace game::utils::soundManager
 		Click = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Select-2.ogg");
 		Crash = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Error-1.ogg");
 		PauseUp = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Swipe-2.ogg");
+		music = mainMenu;
+		PlayMusicStream(music);
 	}
 
 

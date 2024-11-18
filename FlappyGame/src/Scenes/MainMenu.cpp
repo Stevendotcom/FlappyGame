@@ -3,6 +3,7 @@
 #include "GameLoop.h"
 
 #include "UI/Button.h"
+#include "Utilities/SoundManager.h"
 
 namespace game::scenes::mainmenu
 {
@@ -40,11 +41,13 @@ namespace game::scenes::mainmenu
 				currentScene = static_cast<Scene>(i + 1);
 				if(static_cast<Scene>(i + 1) == Scene::GameplayMultiplayer)
 				{
+					ChangeMusic(utils::soundManager::Musics::Game);
 					isMultiplayer = true;
 					timer = 0;
 				}
-				else
+				else if (static_cast<Scene>(i + 1) == Scene::Gameplay)
 				{
+					ChangeMusic(utils::soundManager::Musics::Game);
 					isMultiplayer = false;
 				}
 			}

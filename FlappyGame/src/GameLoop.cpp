@@ -57,6 +57,8 @@ namespace game
 		SetConfigFlags(FLAG_VSYNC_HINT);
 		SetExitKey(KEY_NULL);
 
+		InitAudioDevice();
+
 		mainmenu::Init();
 		gameplay::Init();
 		credits::Init();
