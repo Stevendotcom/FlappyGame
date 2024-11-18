@@ -2,6 +2,7 @@
 
 #include <array>
 #include <raylib.h>
+
 namespace game::utils::soundManager
 {
 	static const int bufferSpace = 10;
@@ -50,8 +51,8 @@ namespace game::utils::soundManager
 
 		if (newSoundPos != bufferCounter)
 		{
-			PlaySound(soundBuffer.at(bufferCounter));
 			bufferCounter++;
+			PlaySound(soundBuffer.at(bufferCounter));
 			bufferCounter %= bufferSpace;
 		}
 	}
