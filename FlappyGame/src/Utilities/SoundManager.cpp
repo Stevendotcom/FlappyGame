@@ -75,6 +75,34 @@ namespace game::utils::soundManager
 
 
 
+	void AddToBuffer(Sounds sound)
+	{
+		newSoundPos++;
+		newSoundPos %= bufferSpace;
+
+		switch (sound)
+		{
+
+		case Sounds::Jump:
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(Jump);
+			break;
+		case Sounds::Hover:
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(Hover);
+			break;
+		case Sounds::Click:
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(Click);
+			break;
+		case Sounds::Crash:
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(Crash);
+			break;
+		case Sounds::PauseUp:
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(PauseUp);
+			break;
+		}
+	}
+
+
+
 	void DeInit()
 	{
 		for (auto sound : soundBuffer)
