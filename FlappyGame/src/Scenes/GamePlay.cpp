@@ -2,9 +2,9 @@
 
 #include "GameLoop.h"
 
-#include "Entities/obstacle.h"
-#include "Entities/Player.h"
 #include "Entities/Parallax.h"
+#include "Entities/Player.h"
+#include "Entities/obstacle.h"
 
 #include "UI/Button.h"
 #include "Utilities/SoundManager.h"
