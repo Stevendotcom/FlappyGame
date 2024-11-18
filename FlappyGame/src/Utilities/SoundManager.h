@@ -20,7 +20,7 @@ namespace game::utils::soundManager
 
 	void Init();
 
-	void UpdateMusic();
+	void Update();
 
 	void ChangeMusic(Musics nextMusic);
 

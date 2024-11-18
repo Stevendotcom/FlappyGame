@@ -42,6 +42,20 @@ namespace game::utils::soundManager
 
 
 
+	void Update()
+	{
+		UpdateMusicStream(music);
+
+		if (newSoundPos != bufferCounter)
+		{
+			PlaySound(soundBuffer.at(bufferCounter));
+			bufferCounter++;
+			bufferCounter %= bufferSpace;
+		}
+	}
+
+
+
 	void DeInit()
 	{
 		for (auto sound : soundBuffer)
