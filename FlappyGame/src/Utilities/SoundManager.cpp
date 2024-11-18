@@ -5,28 +5,29 @@
 
 namespace game::utils::soundManager
 {
-	static const int bufferSpace = 10;
+	const int bufferSpace = 10;
 
-	static Music mainMenu;
+	Music mainMenu;
 
-	static Music gameMusic;
+	Music gameMusic;
 
-	static Music music;
+	Music music;
 
-	static Sound Jump;
+	Sound Jump;
 
-	static Sound Hover;
+	Sound Hover;
 
-	static Sound Click;
+	Sound Click;
 
-	static Sound Crash;
+	Sound Crash;
 
-	static Sound PauseUp;
+	Sound PauseUp;
 
-	static std::array<Sound, bufferSpace> soundBuffer;
+	std::array<Sound, bufferSpace> soundBuffer;
 
-	static int bufferCounter = 0;
-	static int newSoundPos = 0;
+	int bufferCounter = 0;
+
+	int newSoundPos = 0;
 
 
 
