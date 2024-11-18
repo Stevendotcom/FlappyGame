@@ -1,6 +1,7 @@
 ﻿#include "SoundManager.h"
 
 #include <array>
+#include <iostream>
 #include <raylib.h>
 
 namespace game::utils::soundManager
@@ -72,6 +73,10 @@ namespace game::utils::soundManager
 		case Musics::Game:
 			music = gameMusic;
 			break;
+		default:
+			std::cerr << "Music index not expected";
+			music = gameMusic;
+			break;
 		}
 
 		PlayMusicStream(music);
@@ -101,6 +106,9 @@ namespace game::utils::soundManager
 			break;
 		case Sounds::PauseUp:
 			soundBuffer.at(newSoundPos) = LoadSoundAlias(PauseUp);
+			break;
+		default:
+			std::cerr << "Sound index not expected";
 			break;
 		}
 	}
