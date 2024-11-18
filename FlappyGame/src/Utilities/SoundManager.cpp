@@ -56,6 +56,25 @@ namespace game::utils::soundManager
 
 
 
+	void ChangeMusic(Musics nextMusic)
+	{
+		StopMusicStream(music);
+
+		switch (nextMusic)
+		{
+		case Musics::MainMenu:
+			music = mainMenu;
+			break;
+		case Musics::Game:
+			music = gameMusic;
+			break;
+		}
+
+		PlayMusicStream(music);
+	}
+
+
+
 	void DeInit()
 	{
 		for (auto sound : soundBuffer)
