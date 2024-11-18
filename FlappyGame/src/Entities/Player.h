@@ -31,6 +31,6 @@ namespace game::entities::player
 	void Input(Player& player, int key = KEY_SPACE);
 	void Update(Player& player);
 	void Draw(Player& player);
-
+	void Restart(Player& player, float x, float y);
 	void DeInit(Player& player);
 }

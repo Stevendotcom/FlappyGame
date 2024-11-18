@@ -1,5 +1,6 @@
 #include "Player.h"
 
+#include "Utilities/SoundManager.h"
 #include "Utilities/Utils.h"
 
 namespace game::entities::player
@@ -52,6 +53,7 @@ namespace game::entities::player
 	{
 		if (IsKeyPressed(key))
 		{
+			AddToBuffer(utils::soundManager::Sounds::Jump);
 			Jump(player);
 		}
 	}
@@ -78,6 +80,16 @@ namespace game::entities::player
 #endif // _DEBUG
 
 		DrawTexturePro(player.texture, player.source, player.body, player.origin, 195, WHITE);
+	}
+
+
+
+	void Restart(Player &player, float x, float y)
+	{
+		player.body.x = x;
+		player.body.y = y;
+		player.velocity = {0,0};
+		player.isAlive = true;
 	}
 
 
