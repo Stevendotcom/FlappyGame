@@ -17,6 +17,7 @@ namespace game::scenes::gameplay
 	using namespace player;
 	using namespace obstacle;
 	using namespace parallax;
+	using namespace utils::soundManager;
 
 	Player player;
 	Player player2;
@@ -69,25 +70,25 @@ namespace game::scenes::gameplay
 		{
 			if (IsKeyPressed(KEY_ESCAPE))
 			{
-				AddToBuffer(utils::soundManager::Sounds::PauseUp);
+				AddToBuffer(Sounds::PauseUp);
 				pause = !pause;
 			}
 
 			if (pause)
 			{
-				if (button::IsPressed(resume))
+				if (IsPressed(resume))
 					{
 						pause = !pause;
-							AddToBuffer(utils::soundManager::Sounds::Click);
+							AddToBuffer(Sounds::Click);
 					}
 
-				if (button::IsPressed(menu))
+				if (IsPressed(menu))
 				{
-					AddToBuffer(utils::soundManager::Sounds::Click);
+					AddToBuffer(Sounds::Click);
 					currentScene = Scene::Menu;
 					pause = !pause;
 					RestartEntities();
-					ChangeMusic(utils::soundManager::Musics::MainMenu);
+					ChangeMusic(Musics::MainMenu);
 				}
 
 				return;
@@ -111,12 +112,12 @@ namespace game::scenes::gameplay
 		{
 			if (pause)
 			{
-				isOnTop = button::MouseOnTop(resume);
-				isOnTop = button::MouseOnTop(menu) || isOnTop;
+				isOnTop = MouseOnTop(resume);
+				isOnTop = MouseOnTop(menu) || isOnTop;
 				if (isOnTop)
 				{
 					if (!wasOnTop)
-						AddToBuffer(utils::soundManager::Sounds::Hover);
+						AddToBuffer(Sounds::Hover);
 					wasOnTop = true;
 				}
 				else
@@ -143,7 +144,7 @@ namespace game::scenes::gameplay
 				newPos.x = static_cast<float>(GetScreenWidth());
 				newPos.y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
 
-				obstacle::SetPosition(obstacle, newPos);
+				SetPosition(obstacle, newPos);
 			}
 
 			if (isMultiplayer)
@@ -239,9 +240,9 @@ namespace game::scenes::gameplay
 
 	void DeInit()
 	{
-		parallax::Deinit(background);
-		parallax::Deinit(midground);
-		parallax::Deinit(foreground);
+		Deinit(background);
+		Deinit(midground);
+		Deinit(foreground);
 
 		player::DeInit(player);
 		if (isMultiplayer)
@@ -272,7 +273,7 @@ namespace game::scenes::gameplay
 
 	void RestartEntities()
 	{
-		AddToBuffer(utils::soundManager::Sounds::Crash);
+		AddToBuffer(Sounds::Crash);
 
 		float randomY = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
 
