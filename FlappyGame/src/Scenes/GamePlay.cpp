@@ -7,6 +7,7 @@
 #include "Entities/Parallax.h"
 
 #include "UI/Button.h"
+#include "Utilities/SoundManager.h"
 
 #include "Utilities/Utils.h"
 
@@ -27,8 +28,6 @@ namespace game::scenes::gameplay
 
 	button::Button resume;
 	button::Button menu;
-
-
 
 	float timerStart = 3.0f;
 	bool pause;
@@ -64,21 +63,27 @@ namespace game::scenes::gameplay
 		if (timer > timerStart || !isMultiplayer)
 		{
 			if (IsKeyPressed(KEY_ESCAPE))
+			{
+				AddToBuffer(utils::soundManager::Sounds::PauseUp);
 				pause = !pause;
+			}
 
-			if (pause) {
+			if (pause)
+			{
 				if (button::IsPressed(resume))
 					pause = !pause;
 
-				if (button::IsPressed(menu)) {
+				if (button::IsPressed(menu))
+				{
 					currentScene = Scene::Menu;
 					pause = !pause;
 					InitEntities();
+					ChangeMusic(utils::soundManager::Musics::MainMenu);
 				}
 
 				return;
 			}
-			if(!isMultiplayer)
+			if (!isMultiplayer)
 				player::Input(player);
 			else
 			{
@@ -119,23 +124,21 @@ namespace game::scenes::gameplay
 				Vector2 newPos;
 
 				newPos.x = static_cast<float>(GetScreenWidth());
-				newPos.y = static_cast<float>(
-					GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
+				newPos.y = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
 
 				obstacle::SetPosition(obstacle, newPos);
 			}
 
-			if(isMultiplayer)
+			if (isMultiplayer)
 			{
-				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2) || CheckCollision(
-					    player2.body, obstacle.body1) || CheckCollision(player2.body, obstacle.body2))
+				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2) || CheckCollision(player2.body, obstacle.body1) || CheckCollision(
+					    player2.body, obstacle.body2))
 				{
 					InitEntities();
 					currentScene = Scene::Menu;
 				}
 
-				if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0) || CheckBorderCollision(
-					player2.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
+				if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0) || CheckBorderCollision(player2.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
 				{
 					if (player.body.y < 0)
 						player.body.y = 0;
@@ -155,8 +158,7 @@ namespace game::scenes::gameplay
 						currentScene = Scene::Menu;
 					}
 				}
-			}
-			else
+			} else
 			{
 				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2))
 				{
@@ -176,7 +178,6 @@ namespace game::scenes::gameplay
 				}
 			}
 
-
 		}
 	}
 
@@ -191,22 +192,18 @@ namespace game::scenes::gameplay
 
 		player::Draw(player);
 
-		if(isMultiplayer)
+		if (isMultiplayer)
 			player::Draw(player2);
 
 		obstacle::Draw(obstacle);
 
 		parallax::Draw(foreground);
 
-		DrawRect(Rectangle{ 0,
-		                    static_cast<float>(screenHeight) / 5.0f,
-		                    static_cast<float>(screenWidth),
-		                    static_cast<float>(screenHeight) }, Color{ 37, 107, 122, 150 });
+		DrawRect(Rectangle{ 0, static_cast<float>(screenHeight) / 5.0f, static_cast<float>(screenWidth), static_cast<float>(screenHeight) }, Color{ 37, 107, 122, 150 });
 
 		if (pause)
 		{
-			DrawRect(Rectangle{ 0, 0, static_cast<float>(screenWidth), static_cast<float>(screenHeight) },
-			         Color{ 50, 50, 50, 200 });
+			DrawRect(Rectangle{ 0, 0, static_cast<float>(screenWidth), static_cast<float>(screenHeight) }, Color{ 50, 50, 50, 200 });
 
 			button::Draw(resume);
 			button::Draw(menu);
@@ -214,7 +211,7 @@ namespace game::scenes::gameplay
 
 		if (timer < timerStart && isMultiplayer)
 		{
-			DrawRectangle(0,0, GetScreenWidth(), GetScreenWidth(), {0, 0, 0, 100} );
+			DrawRectangle(0, 0, GetScreenWidth(), GetScreenWidth(), { 0, 0, 0, 100 });
 			DrawText("Player 1 jumps with W", 20, 100, 48, WHITE);
 			DrawText("Player 2 jumps with Up key", 20, 160, 48, WHITE);
 			DrawText(TextFormat("%0.1f", (timerStart - timer)), GetScreenWidth() / 2, 215, 48, WHITE);
@@ -230,7 +227,7 @@ namespace game::scenes::gameplay
 		parallax::Deinit(foreground);
 
 		player::DeInit(player);
-		if(isMultiplayer)
+		if (isMultiplayer)
 			player::DeInit(player2);
 	}
 
