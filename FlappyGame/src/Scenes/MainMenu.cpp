@@ -8,7 +8,6 @@
 namespace game::scenes::mainmenu
 {
 	const std::string GameVersion = "Version 1.0";
-	const std::string GameName = "Happy Cannon";
 	const int maxButtons = 4;
 
 	button::Button buttons[maxButtons];
@@ -16,6 +15,7 @@ namespace game::scenes::mainmenu
 	bool wasOnTop[maxButtons] = { false };
 	bool isOnTop[maxButtons] = { false };
 
+	Texture2D header;
 	Texture2D background;
 	Texture2D midground;
 	Texture2D foreground;
@@ -24,6 +24,7 @@ namespace game::scenes::mainmenu
 
 	void Init()
 	{
+		header = LoadTexture("res/Header.png");
 		background = LoadTexture("res/BackGround.png");
 		midground = LoadTexture("res/MidGround.png");
 		foreground = LoadTexture("res/ForeGround.png");
@@ -103,8 +104,10 @@ namespace game::scenes::mainmenu
 		{
 			button::Draw(buttons[i]);
 		}
-		DrawText(GameName.c_str(),(GetScreenWidth() - MeasureText(GameName.c_str(), 64))/2, 100, 64, WHITE);
 
+		DrawTexturePro(header, { 0, 0, static_cast<float>(header.width), static_cast<float>(header.height) },
+			       { (static_cast<float>(GetScreenWidth()) - static_cast<float>(header.width)) / 2, 0, static_cast<float>(header.width), static_cast<float>(header.height) }, { 0, 0 },
+			       0, WHITE);
 		DrawText(GameVersion.c_str(), 1, screenHeight - 10, 10, BLACK);
 	}
 
@@ -112,6 +115,7 @@ namespace game::scenes::mainmenu
 
 	void DeInit()
 	{
+		UnloadTexture(header);
 		UnloadTexture(background);
 		UnloadTexture(midground);
 		UnloadTexture(foreground);
