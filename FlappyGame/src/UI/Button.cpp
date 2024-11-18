@@ -63,7 +63,7 @@ namespace button
 			button.isMouseOnTop = false;
 		}
 
-		return true;
+		return button.isMouseOnTop;
 	}
 
 	bool IsPressed(Button& button)
