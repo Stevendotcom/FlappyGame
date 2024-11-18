@@ -142,6 +142,7 @@ namespace game
 		credits::DeInit();
 		soundManager::DeInit();
 
+		CloseAudioDevice();
 		CloseWindow();
 	}
 }
