@@ -8,16 +8,21 @@
 namespace game::scenes::mainmenu
 {
 	const std::string GameVersion = "Version 1.0";
-	constexpr int maxButtons = 4;
+	const int maxButtons = 4;
 
 	button::Button buttons[maxButtons];
+
+	static bool wasOnTop[maxButtons] = {false};
+	static bool isOnTop[maxButtons] = {false};
+
+
 
 	void Init()
 	{
 		float x = (static_cast<float>(GetScreenWidth()) / 2.f);
 		float y = 50;
 
-		Rectangle graph = { x,y,button::ButtonWidth,button::ButtonHeight };
+		Rectangle graph = { x, y, button::ButtonWidth, button::ButtonHeight };
 
 		for (int i = 0; i < maxButtons; i++)
 		{
@@ -32,20 +37,22 @@ namespace game::scenes::mainmenu
 		button::SetText(buttons[3], "Exit");
 	}
 
+
+
 	void Input()
 	{
 		for (int i = 0; i < maxButtons; i++)
 		{
 			if (button::IsPressed(buttons[i]))
 			{
+				AddToBuffer(utils::soundManager::Sounds::Click);
 				currentScene = static_cast<Scene>(i + 1);
-				if(static_cast<Scene>(i + 1) == Scene::GameplayMultiplayer)
+				if (static_cast<Scene>(i + 1) == Scene::GameplayMultiplayer)
 				{
 					ChangeMusic(utils::soundManager::Musics::Game);
 					isMultiplayer = true;
 					timer = 0;
-				}
-				else if (static_cast<Scene>(i + 1) == Scene::Gameplay)
+				} else if (static_cast<Scene>(i + 1) == Scene::Gameplay)
 				{
 					ChangeMusic(utils::soundManager::Musics::Game);
 					isMultiplayer = false;
@@ -53,13 +60,27 @@ namespace game::scenes::mainmenu
 			}
 		}
 	}
+
+
+
 	void Update()
 	{
 		for (int i = 0; i < maxButtons; i++)
 		{
-			button::MouseOnTop(buttons[i]);
+			isOnTop[i] = button::MouseOnTop(buttons[i]);
+			if (isOnTop[i])
+			{
+				if (!wasOnTop[i])
+					AddToBuffer(utils::soundManager::Sounds::Hover);
+				wasOnTop[i] = true;
+			}
+			else
+				wasOnTop[i] = false;
 		}
 	}
+
+
+
 	void Draw()
 	{
 		for (int i = 0; i < maxButtons; i++)
@@ -70,8 +91,8 @@ namespace game::scenes::mainmenu
 		DrawText(GameVersion.c_str(), 1, screenHeight - 10, 10, BLACK);
 	}
 
-	void DeInit()
-	{
 
-	}
+
+	void DeInit()
+	{}
 }
