@@ -5,8 +5,10 @@
 #include "Scenes/Credits.h"
 #include "Scenes/GamePlay.h"
 #include "Scenes/MainMenu.h"
+#include "Utilities/SoundManager.h"
 
 using namespace game::scenes;
+using namespace game::utils;
 
 namespace game
 {
@@ -55,9 +57,12 @@ namespace game
 		SetConfigFlags(FLAG_VSYNC_HINT);
 		SetExitKey(KEY_NULL);
 
+		InitAudioDevice();
+
 		mainmenu::Init();
 		gameplay::Init();
 		credits::Init();
+		soundManager::Init();
 	}
 
 	void Input()
@@ -81,6 +86,8 @@ namespace game
 
 	void Update()
 	{
+		soundManager::Update();
+
 		switch (currentScene)
 		{
 		case Scene::Menu:
@@ -133,7 +140,9 @@ namespace game
 		mainmenu::DeInit();
 		gameplay::DeInit();
 		credits::DeInit();
+		soundManager::DeInit();
 
+		CloseAudioDevice();
 		CloseWindow();
 	}
 }

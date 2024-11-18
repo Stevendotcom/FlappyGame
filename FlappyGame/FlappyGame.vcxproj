@@ -21,6 +21,7 @@
     <ClCompile Include="src\Scenes\MainMenu.cpp" />
     <ClCompile Include="src\UI\Button.cpp" />
     <ClCompile Include="src\UI\Text.cpp" />
+    <ClCompile Include="src\Utilities\SoundManager.cpp" />
     <ClCompile Include="src\Utilities\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <ClInclude Include="src\Scenes\MainMenu.h" />
     <ClInclude Include="src\UI\Button.h" />
     <ClInclude Include="src\UI\Text.h" />
+    <ClInclude Include="src\Utilities\SoundManager.h" />
     <ClInclude Include="src\Utilities\Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

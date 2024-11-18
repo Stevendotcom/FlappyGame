@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include "raylib.h"
+#include <iostream>
 
 namespace text
 {
