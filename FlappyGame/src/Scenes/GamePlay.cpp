@@ -32,12 +32,12 @@ namespace game::scenes::gameplay
 	float timerStart = 3.0f;
 	bool pause;
 
-	static bool wasOnTop = false;
-	static bool isOnTop = false;
+	bool wasOnTop = false;
+	bool isOnTop = false;
 
-	static void InitEntities();
+	void InitEntities();
 
-	static void RestartEntities();
+	void RestartEntities();
 
 
 
@@ -78,7 +78,7 @@ namespace game::scenes::gameplay
 				if (button::IsPressed(resume))
 					{
 						pause = !pause;
-						AddToBuffer(utils::soundManager::Sounds::Click);
+							AddToBuffer(utils::soundManager::Sounds::Click);
 					}
 
 				if (button::IsPressed(menu))
