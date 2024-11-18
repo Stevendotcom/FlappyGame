@@ -253,7 +253,7 @@ namespace game::scenes::gameplay
 
 	void InitEntities()
 	{
-		float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight() - static_cast<int>(obstacle.body1.height / 2)));
+		float randomY = static_cast<float>(GetRandomValue(200, GetScreenHeight()));
 
 		float x = static_cast<float>(GetScreenWidth()) / 4.0f;
 		float y = static_cast<float>(GetScreenHeight()) / 2.0f;
