@@ -8,19 +8,28 @@
 namespace game::scenes::mainmenu
 {
 	const std::string GameVersion = "Version 1.0";
+	const std::string GameName = "Happy Cannon";
 	const int maxButtons = 4;
 
 	button::Button buttons[maxButtons];
 
-	bool wasOnTop[maxButtons] = {false};
-	bool isOnTop[maxButtons] = {false};
+	bool wasOnTop[maxButtons] = { false };
+	bool isOnTop[maxButtons] = { false };
+
+	Texture2D background;
+	Texture2D midground;
+	Texture2D foreground;
 
 
 
 	void Init()
 	{
+		background = LoadTexture("res/BackGround.png");
+		midground = LoadTexture("res/MidGround.png");
+		foreground = LoadTexture("res/ForeGround.png");
+
 		float x = (static_cast<float>(GetScreenWidth()) / 2.f);
-		float y = 50;
+		float y = 250;
 
 		Rectangle graph = { x, y, button::ButtonWidth, button::ButtonHeight };
 
@@ -73,8 +82,7 @@ namespace game::scenes::mainmenu
 				if (!wasOnTop[i])
 					AddToBuffer(utils::soundManager::Sounds::Hover);
 				wasOnTop[i] = true;
-			}
-			else
+			} else
 				wasOnTop[i] = false;
 		}
 	}
@@ -83,10 +91,19 @@ namespace game::scenes::mainmenu
 
 	void Draw()
 	{
+
+		DrawTexturePro(background, { 0, 0, static_cast<float>(background.width), static_cast<float>(background.height) },
+		               { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+		DrawTexturePro(midground, { 0, 0, static_cast<float>(midground.width), static_cast<float>(midground.height) },
+		               { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+		DrawTexturePro(foreground, { 0, 0, static_cast<float>(foreground.width), static_cast<float>(foreground.height) },
+		               { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+
 		for (int i = 0; i < maxButtons; i++)
 		{
 			button::Draw(buttons[i]);
 		}
+		DrawText(GameName.c_str(),(GetScreenWidth() - MeasureText(GameName.c_str(), 64))/2, 100, 64, WHITE);
 
 		DrawText(GameVersion.c_str(), 1, screenHeight - 10, 10, BLACK);
 	}
@@ -94,5 +111,9 @@ namespace game::scenes::mainmenu
 
 
 	void DeInit()
-	{}
+	{
+		UnloadTexture(background);
+		UnloadTexture(midground);
+		UnloadTexture(foreground);
+	}
 }
