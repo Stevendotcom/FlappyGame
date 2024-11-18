@@ -74,7 +74,7 @@ namespace game::entities::player
 	void Draw(Player &player)
 	{
 #ifdef _DEBUG
-		DrawRect(p.body, BLUE);
+		DrawRect(player.body, BLUE);
 #endif // _DEBUG
 
 		DrawTexturePro(player.texture, player.source, player.body, player.origin, 195, WHITE);
