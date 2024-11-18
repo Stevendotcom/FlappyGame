@@ -32,7 +32,9 @@ namespace game::scenes::gameplay
 	float timerStart = 3.0f;
 	bool pause;
 
-	void InitEntities();
+	static void InitEntities();
+
+	static void RestartEntities();
 
 
 
@@ -77,7 +79,7 @@ namespace game::scenes::gameplay
 				{
 					currentScene = Scene::Menu;
 					pause = !pause;
-					InitEntities();
+					RestartEntities();
 					ChangeMusic(utils::soundManager::Musics::MainMenu);
 				}
 
@@ -134,7 +136,7 @@ namespace game::scenes::gameplay
 				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2) || CheckCollision(player2.body, obstacle.body1) || CheckCollision(
 					    player2.body, obstacle.body2))
 				{
-					InitEntities();
+					RestartEntities();
 					currentScene = Scene::Menu;
 				}
 
@@ -145,7 +147,7 @@ namespace game::scenes::gameplay
 
 					if (player.body.y + player.body.height > static_cast<float>(GetScreenHeight()))
 					{
-						InitEntities();
+						RestartEntities();
 						currentScene = Scene::Menu;
 					}
 
@@ -154,7 +156,7 @@ namespace game::scenes::gameplay
 
 					if (player2.body.y + player2.body.height > static_cast<float>(GetScreenHeight()))
 					{
-						InitEntities();
+						RestartEntities();
 						currentScene = Scene::Menu;
 					}
 				}
@@ -162,7 +164,7 @@ namespace game::scenes::gameplay
 			{
 				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2))
 				{
-					InitEntities();
+					RestartEntities();
 					timer = 3.0f;
 					currentScene = Scene::Menu;
 				}
@@ -172,7 +174,7 @@ namespace game::scenes::gameplay
 						player.body.y = 0;
 					if (player.body.y + player.body.height > static_cast<float>(GetScreenHeight()))
 					{
-						InitEntities();
+						RestartEntities();
 						currentScene = Scene::Menu;
 					}
 				}
@@ -249,5 +251,21 @@ namespace game::scenes::gameplay
 
 		x = static_cast<float>(GetScreenWidth() + 20);
 		obstacle = obstacle::Create(x, randomY, 40, 1000, 500.f);
+	}
+
+
+
+	void RestartEntities()
+	{
+		float randomY = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
+
+		float x = static_cast<float>(GetScreenWidth()) / 4.0f;
+		float y = static_cast<float>(GetScreenHeight()) / 2.0f;
+
+		Restart(player, x, y);
+		Restart(player2, x, y);
+
+		x = static_cast<float>(GetScreenWidth() + 20);
+		SetPosition(obstacle, { x, randomY });
 	}
 }
