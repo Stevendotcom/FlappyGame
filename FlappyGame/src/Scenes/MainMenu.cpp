@@ -12,8 +12,8 @@ namespace game::scenes::mainmenu
 
 	button::Button buttons[maxButtons];
 
-	static bool wasOnTop[maxButtons] = {false};
-	static bool isOnTop[maxButtons] = {false};
+	bool wasOnTop[maxButtons] = {false};
+	bool isOnTop[maxButtons] = {false};
 
 
 
