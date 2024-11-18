@@ -20,10 +20,14 @@ namespace button
 		newButton.isPressed = false;
 		newButton.isReleased = false;
 
+		newButton.texture = LoadTexture("res/UI_Flat_Banner01a.png");
+
 		SetText(newButton, text);
 
 		return newButton;
 	}
+
+
 
 	Vector2 GetCenterPosition(const Button &button)
 	{
@@ -35,13 +39,17 @@ namespace button
 		return centerPosition;
 	}
 
-	void SetPosition(Button& button, const Vector2& newPosition)
+
+
+	void SetPosition(Button &button, const Vector2 &newPosition)
 	{
 		button.graph.x = newPosition.x - (button.graph.width / 2);
 		button.graph.y = newPosition.y - (button.graph.height / 2);
 	}
 
-	bool MouseOnTop(Button& button)
+
+
+	bool MouseOnTop(Button &button)
 	{
 		Vector2 mousePosition = GetMousePosition();
 
@@ -57,8 +65,7 @@ namespace button
 		if (onTopX && onTopY)
 		{
 			button.isMouseOnTop = true;
-		}
-		else
+		} else
 		{
 			button.isMouseOnTop = false;
 		}
@@ -66,7 +73,9 @@ namespace button
 		return button.isMouseOnTop;
 	}
 
-	bool IsPressed(Button& button)
+
+
+	bool IsPressed(Button &button)
 	{
 		bool isReleassed = false;
 
@@ -82,20 +91,23 @@ namespace button
 				button.isPressed = true;
 			else
 				button.isPressed = false;
-		}
-		else
+		} else
 			button.isPressed = false;
 
 		return isReleassed;
 	}
 
-	void SetText(Button& button, const std::string &text)
+
+
+	void SetText(Button &button, const std::string &text)
 	{
 		button.text.text = text;
 
 		button.text.position.x = button.graph.x + (button.graph.width / 2) - static_cast<float>(MeasureText(button.text.text.c_str(), button.text.font)) / 2.0f;
-		button.text.position.y = button.graph.y + (button.graph.height / 2) - static_cast<float>((button.text.font)) / 2.0F;
+		button.text.position.y = button.graph.y + (button.graph.height / 2) - static_cast<float>((button.text.font)) / 2.0F + 5;
 	}
+
+
 
 	void Draw(const Button &button)
 	{
@@ -106,11 +118,10 @@ namespace button
 		else if (button.isMouseOnTop)
 			colorUsed = DARKGRAY;
 		else
-			colorUsed = BLACK;
+			colorUsed = WHITE;
 
-		DrawRect(button.graph, colorUsed);
+		DrawTexturePro(button.texture, { 0, 0, static_cast<float>(button.texture.width), static_cast<float>(button.texture.height) }, button.graph, { 0, 0 }, 0, colorUsed);
 
 		text::Draw(button.text);
 	}
 }
-

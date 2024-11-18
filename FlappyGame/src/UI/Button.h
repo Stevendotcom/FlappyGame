@@ -16,12 +16,14 @@ namespace button
 
 		Rectangle graph;
 
+		Texture2D texture;
+
 		bool isPressed;
 		bool isReleased;
 		bool isMouseOnTop;
 	};
 
-	Button Create(const Rectangle &graph = {0,0,ButtonWidth, ButtonHeight}, const std::string &text = "example", int fontSize = ButtonFont, Color textColor = WHITE);
+	Button Create(const Rectangle &graph = {0,0,ButtonWidth, ButtonHeight}, const std::string &text = "example", int fontSize = ButtonFont, Color textColor = BLACK);
 
 	Vector2 GetCenterPosition(const Button &);
 
