@@ -32,6 +32,9 @@ namespace game::scenes::gameplay
 	float timerStart = 3.0f;
 	bool pause;
 
+	static bool wasOnTop = false;
+	static bool isOnTop = false;
+
 	static void InitEntities();
 
 	static void RestartEntities();
@@ -73,10 +76,14 @@ namespace game::scenes::gameplay
 			if (pause)
 			{
 				if (button::IsPressed(resume))
-					pause = !pause;
+					{
+						pause = !pause;
+						AddToBuffer(utils::soundManager::Sounds::Click);
+					}
 
 				if (button::IsPressed(menu))
 				{
+					AddToBuffer(utils::soundManager::Sounds::Click);
 					currentScene = Scene::Menu;
 					pause = !pause;
 					RestartEntities();
@@ -104,8 +111,16 @@ namespace game::scenes::gameplay
 		{
 			if (pause)
 			{
-				button::MouseOnTop(resume);
-				button::MouseOnTop(menu);
+				isOnTop = button::MouseOnTop(resume);
+				isOnTop = button::MouseOnTop(menu) || isOnTop;
+				if (isOnTop)
+				{
+					if (!wasOnTop)
+						AddToBuffer(utils::soundManager::Sounds::Hover);
+					wasOnTop = true;
+				}
+				else
+					wasOnTop = false;
 
 				return;
 			}
@@ -257,6 +272,8 @@ namespace game::scenes::gameplay
 
 	void RestartEntities()
 	{
+		AddToBuffer(utils::soundManager::Sounds::Crash);
+
 		float randomY = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
 
 		float x = static_cast<float>(GetScreenWidth()) / 4.0f;
