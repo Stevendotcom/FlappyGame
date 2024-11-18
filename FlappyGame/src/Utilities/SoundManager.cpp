@@ -52,8 +52,8 @@ namespace game::utils::soundManager
 		if (newSoundPos != bufferCounter)
 		{
 			bufferCounter++;
-			PlaySound(soundBuffer.at(bufferCounter));
 			bufferCounter %= bufferSpace;
+			PlaySound(soundBuffer.at(bufferCounter));
 		}
 	}
 
