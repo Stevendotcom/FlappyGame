@@ -8,7 +8,7 @@ namespace game::entities::obstacle
 	{
 		Rectangle body1;
 		Rectangle body2;
-
+		Texture2D texture;
 		Vector2 dir;
 
 		float speed;
