@@ -30,6 +30,7 @@ namespace button
 	void SetPosition(Button& button, const Vector2& newPosition);
 
 	bool MouseOnTop(Button &button);
+
 	bool IsPressed(Button &button);
 
 	void SetText(Button &button, const std::string &text);

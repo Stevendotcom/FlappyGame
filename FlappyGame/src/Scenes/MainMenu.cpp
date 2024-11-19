@@ -12,13 +12,20 @@ namespace game::scenes::mainmenu
 
 	button::Button buttons[maxButtons];
 
+	button::Button mute;
+
 	bool wasOnTop[maxButtons] = { false };
 	bool isOnTop[maxButtons] = { false };
+
+	bool muted = false;
 
 	Texture2D header;
 	Texture2D background;
 	Texture2D midground;
 	Texture2D foreground;
+
+	Texture2D muteOn;
+	Texture2D muteOff;
 
 
 
@@ -28,6 +35,8 @@ namespace game::scenes::mainmenu
 		background = LoadTexture("res/BackGround.png");
 		midground = LoadTexture("res/MidGround.png");
 		foreground = LoadTexture("res/ForeGround.png");
+		muteOn = LoadTexture("res/UI_Flat_ToggleOn01a.png");
+		muteOff = LoadTexture("res/UI_Flat_ToggleOff01a.png");
 
 		float x = (static_cast<float>(GetScreenWidth()) / 2.f);
 		float y = 250;
@@ -46,6 +55,11 @@ namespace game::scenes::mainmenu
 		SetText(buttons[2], "How To Play");
 		SetText(buttons[3], "Credits");
 		SetText(buttons[4], "Exit");
+
+		mute = button::Create({ 60, static_cast<float>(screenHeight) - 80, 30, 30 });
+		button::SetText(mute, "");
+		mute.texture = muteOff;
+		
 	}
 
 
@@ -68,6 +82,15 @@ namespace game::scenes::mainmenu
 					isMultiplayer = false;
 				}
 			}
+			if (IsPressed(mute))
+			{
+				if (muted)
+					SetMasterVolume(0);
+				
+				else
+					SetMasterVolume(1);
+				muted = !muted;
+			}
 		}
 	}
 
@@ -86,6 +109,7 @@ namespace game::scenes::mainmenu
 			} else
 				wasOnTop[i] = false;
 		}
+		button::MouseOnTop(mute);
 	}
 
 
@@ -109,6 +133,14 @@ namespace game::scenes::mainmenu
 			       { (static_cast<float>(GetScreenWidth()) - static_cast<float>(header.width)) / 2, 0, static_cast<float>(header.width), static_cast<float>(header.height) }, { 0, 0 },
 			       0, WHITE);
 		DrawText(GameVersion.c_str(), 1, screenHeight - 10, 10, BLACK);
+
+		if (muted)
+			mute.texture = muteOn;
+		else
+			mute.texture = muteOff;
+
+		button::Draw(mute);	
+		DrawText("Mute Sounds", static_cast<int>(mute.graph.x) + 40, static_cast<int>(mute.graph.y) + 3, 20, WHITE);
 	}
 
 
