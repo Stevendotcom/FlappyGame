@@ -43,7 +43,7 @@ namespace game::scenes::mainmenu
 
 		SetText(buttons[0], "1 Player");
 		SetText(buttons[1], "2 Players");
-		SetText(buttons[2], "Rules");
+		SetText(buttons[2], "How To Play");
 		SetText(buttons[3], "Credits");
 		SetText(buttons[4], "Exit");
 	}
