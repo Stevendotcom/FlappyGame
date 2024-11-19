@@ -57,7 +57,7 @@ namespace game::scenes::mainmenu
 		SetText(buttons[4], "Exit");
 
 		mute = button::Create({ 60, static_cast<float>(screenHeight) - 80, 30, 30 });
-		button::SetText(mute, "");
+		SetText(mute, "");
 		mute.texture = muteOff;
 		
 	}
@@ -84,7 +84,7 @@ namespace game::scenes::mainmenu
 			}
 			if (IsPressed(mute))
 			{
-				if (muted)
+				if (!muted)
 					SetMasterVolume(0);
 				
 				else
@@ -109,7 +109,7 @@ namespace game::scenes::mainmenu
 			} else
 				wasOnTop[i] = false;
 		}
-		button::MouseOnTop(mute);
+		MouseOnTop(mute);
 	}
 
 

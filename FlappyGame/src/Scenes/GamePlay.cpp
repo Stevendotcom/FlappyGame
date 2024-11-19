@@ -155,6 +155,7 @@ namespace game::scenes::gameplay
 				pause = true;
 				lost = true;
 				messageScore.append(" " + std::to_string(static_cast<int>(score)));
+				AddToBuffer(Sounds::Crash);
 			}
 			if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
 			{
@@ -166,6 +167,7 @@ namespace game::scenes::gameplay
 					pause = true;
 					lost = true;
 					messageScore.append(" " + std::to_string(static_cast<int>(score)));
+					AddToBuffer(Sounds::Crash);
 
 				}
 			}
@@ -180,6 +182,7 @@ namespace game::scenes::gameplay
 					pause = true;
 					lost = true;
 					messageScore.append(" " + std::to_string(static_cast<int>(score)));
+					AddToBuffer(Sounds::Crash);
 
 				}
 
@@ -194,6 +197,8 @@ namespace game::scenes::gameplay
 						pause = true;
 						lost = true;
 						messageScore.append(" " + std::to_string(static_cast<int>(score)));
+						AddToBuffer(Sounds::Crash);
+
 
 					}
 				}
@@ -292,8 +297,6 @@ namespace game::scenes::gameplay
 		messageScore = "";
 		timer = 0;
 		score = 0;
-
-		AddToBuffer(Sounds::Crash);
 
 		float randomY = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));
 
