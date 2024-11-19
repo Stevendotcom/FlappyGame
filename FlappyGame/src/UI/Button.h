@@ -29,12 +29,12 @@ namespace button
 
 	void SetPosition(Button& button, const Vector2& newPosition);
 
-	bool MouseOnTop(Button&);
-	bool IsPressed(Button&);
+	bool MouseOnTop(Button &button);
+	bool IsPressed(Button &button);
 
-	void SetText(Button& button, const std::string &text);
+	void SetText(Button &button, const std::string &text);
 
-	void Draw(const Button &);
+	void Draw(const Button &button);
 
 	void DeInit(Button &button);
 }
