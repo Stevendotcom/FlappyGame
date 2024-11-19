@@ -29,6 +29,8 @@ namespace game
 
 	float score = 0;
 
+	Font defFont;
+
 	static void Init();
 
 	static void Input();

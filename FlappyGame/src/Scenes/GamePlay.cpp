@@ -122,7 +122,7 @@ namespace game::scenes::gameplay
 		{
 			if (pause)
 			{
-				pause::Update(resume, menu);
+				pause::Update(resume, menu, lost);
 				return;
 			}
 
@@ -221,7 +221,7 @@ namespace game::scenes::gameplay
 
 		if (pause)
 		{
-			pause::Draw(resume, menu, message, messageScore, messagePause, fontSizeLost, fontSizeScore, pause);
+			pause::Draw(resume, menu, message, messageScore, messagePause, fontSizeLost, fontSizeScore, lost);
 		}
 
 		if (timer < timerStart && isMultiplayer)

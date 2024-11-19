@@ -11,9 +11,9 @@ namespace game::entities::pause
 	bool wasOnTop = false;
 	bool isOnTop = false;
 
-	void Update(button::Button resume, button::Button menu)
+	void Update(button::Button& resume, button::Button& menu, bool lost)
 	{
-		isOnTop = MouseOnTop(resume);
+		isOnTop = MouseOnTop(resume) && !lost;
 		isOnTop = MouseOnTop(menu) || isOnTop;
 		if (isOnTop)
 		{
