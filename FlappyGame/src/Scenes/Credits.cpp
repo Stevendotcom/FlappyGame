@@ -177,5 +177,10 @@ namespace game::scenes::credits
 		UnloadTexture(background);
 		UnloadTexture(midground);
 		UnloadTexture(foreground);
+
+		for (int i = 0; i < maxButtons; i++)
+		{
+			DeInit(buttons[i]);
+		}
 	}
 }

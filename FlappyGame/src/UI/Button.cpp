@@ -81,9 +81,8 @@ namespace button
 
 		if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 			if (button.isMouseOnTop)
-			{
 				isReleassed = true;
-			}
+			
 
 		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 		{
@@ -91,7 +90,8 @@ namespace button
 				button.isPressed = true;
 			else
 				button.isPressed = false;
-		} else
+		} 
+		else
 			button.isPressed = false;
 
 		return isReleassed;
@@ -123,5 +123,12 @@ namespace button
 		DrawTexturePro(button.texture, { 0, 0, static_cast<float>(button.texture.width), static_cast<float>(button.texture.height) }, button.graph, { 0, 0 }, 0, colorUsed);
 
 		text::Draw(button.text);
+	}
+
+
+
+	void DeInit(Button &button) 
+	{ 
+		UnloadTexture(button.texture);
 	}
 }

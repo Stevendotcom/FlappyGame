@@ -35,4 +35,6 @@ namespace button
 	void SetText(Button& button, const std::string &text);
 
 	void Draw(const Button &);
+
+	void DeInit(Button &button);
 }

@@ -103,6 +103,13 @@ namespace game::entities::obstacle
 
 
 
+	void DeInit(Obstacle &Obstacle) 
+	{ 
+		UnloadTexture(Obstacle.texture);
+	}
+
+
+
 	void Move(Obstacle &obstacle)
 	{
 		obstacle.body1.x += obstacle.dir.x * obstacle.speed * GetFrameTime();

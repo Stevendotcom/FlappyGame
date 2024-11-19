@@ -22,4 +22,5 @@ namespace game::entities::obstacle
 	void Update(Obstacle &obstacle);
 	void Draw(const Obstacle &obstacle);
 	void SetPosition(Obstacle &obstacle, Vector2 newPos);
+	void DeInit(Obstacle &Obstacle);
 }

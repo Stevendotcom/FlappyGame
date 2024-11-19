@@ -242,8 +242,12 @@ namespace game::scenes::gameplay
 		Deinit(foreground);
 
 		player::DeInit(player);
-		if (isMultiplayer)
-			player::DeInit(player2);
+		player::DeInit(player2);
+
+		button::DeInit(resume);
+		button::DeInit(menu);
+
+		obstacle::DeInit(obstacle);
 	}
 
 
@@ -264,6 +268,7 @@ namespace game::scenes::gameplay
 
 		x = static_cast<float>(GetScreenWidth() + 20);
 		obstacle = obstacle::Create(x, randomY, 40, 1000, 500.f);
+		
 	}
 
 
