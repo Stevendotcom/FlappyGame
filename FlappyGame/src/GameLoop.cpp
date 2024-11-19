@@ -27,6 +27,8 @@ namespace game
 
 	float timer = 0;
 
+	float score = 0;
+
 	static void Init();
 
 	static void Input();
@@ -63,6 +65,8 @@ namespace game
 		gameplay::Init();
 		credits::Init();
 		soundManager::Init();
+
+		defFont = LoadFontEx("res/Beholden-Regular.ttf", 64, nullptr, 0);
 	}
 
 	void Input()
@@ -144,6 +148,8 @@ namespace game
 
 		CloseAudioDevice();
 		CloseWindow();
+
+		UnloadFont(defFont);
 	}
 }
 

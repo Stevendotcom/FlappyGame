@@ -4,6 +4,7 @@
 
 #include "Entities/Obstacle.h"
 #include "Entities/Parallax.h"
+#include "Entities/Pause.h"
 #include "Entities/Player.h"
 
 #include "UI/Button.h"
@@ -31,14 +32,23 @@ namespace game::scenes::gameplay
 	button::Button menu;
 
 	float timerStart = 3.0f;
-	bool pause;
+	float fontSizeLost = 52;
+	float fontSizeScore = 64;
 
-	bool wasOnTop = false;
-	bool isOnTop = false;
+	bool pause;
+	bool lost;
+
+	std::string message = "You lost!";
+	std::string messagePause = "Pause";
+	std::string messageScore = "Score";
+
+	Vector2 size;
+	Vector2 sizePause;
+	Vector2 sizeScore;
 
 	void InitEntities();
 
-	void RestartEntities();
+	void Reset();
 
 
 
@@ -55,7 +65,7 @@ namespace game::scenes::gameplay
 
 		resume = button::Create(posButton, "Resume");
 
-		posButton.y = static_cast<float>(screenHeight) / 2.0f + button::ButtonHeight * 2.4f;
+		posButton.y = static_cast<float>(screenHeight) / 2.0f + button::ButtonHeight;
 
 		menu = button::Create(posButton, "Menu");
 
@@ -68,7 +78,7 @@ namespace game::scenes::gameplay
 	{
 		if (timer > timerStart || !isMultiplayer)
 		{
-			if (IsKeyPressed(KEY_ESCAPE))
+			if (IsKeyPressed(KEY_ESCAPE) && !lost)
 			{
 				AddToBuffer(Sounds::PauseUp);
 				pause = !pause;
@@ -77,17 +87,16 @@ namespace game::scenes::gameplay
 			if (pause)
 			{
 				if (IsPressed(resume))
-					{
-						pause = !pause;
-							AddToBuffer(Sounds::Click);
-					}
+				{
+					pause = !pause;
+					AddToBuffer(Sounds::Click);
+				}
 
 				if (IsPressed(menu))
 				{
 					AddToBuffer(Sounds::Click);
 					currentScene = Scene::Menu;
-					pause = !pause;
-					RestartEntities();
+					Reset();
 					ChangeMusic(Musics::MainMenu);
 				}
 
@@ -108,23 +117,16 @@ namespace game::scenes::gameplay
 	void Update()
 	{
 		timer += GetFrameTime();
+
 		if (timer > timerStart || !isMultiplayer)
 		{
 			if (pause)
 			{
-				isOnTop = MouseOnTop(resume);
-				isOnTop = MouseOnTop(menu) || isOnTop;
-				if (isOnTop)
-				{
-					if (!wasOnTop)
-						AddToBuffer(Sounds::Hover);
-					wasOnTop = true;
-				}
-				else
-					wasOnTop = false;
-
+				pause::Update(resume, menu);
 				return;
 			}
+
+			score += 100 * GetFrameTime();
 
 			parallax::Update(background);
 			parallax::Update(midground);
@@ -147,51 +149,49 @@ namespace game::scenes::gameplay
 				SetPosition(obstacle, newPos);
 			}
 
+			if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2))
+			{
+				message = "Player 1 lost, nearly there buddy";
+				pause = true;
+				lost = true;
+				messageScore.append(" " + std::to_string(static_cast<int>(score)));
+			}
+			if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
+			{
+				if (player.body.y < 0)
+					player.body.y = 0;
+				if (player.body.y + player.body.height > static_cast<float>(GetScreenHeight()))
+				{
+					message = "Player 1 lost. Remember you *have* to jump";
+					pause = true;
+					lost = true;
+					messageScore.append(" " + std::to_string(static_cast<int>(score)));
+
+				}
+			}
+
 			if (isMultiplayer)
 			{
-				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2) || CheckCollision(player2.body, obstacle.body1) || CheckCollision(
-					    player2.body, obstacle.body2))
+				if (CheckCollision(player2.body, obstacle.body1) || CheckCollision(player2.body, obstacle.body2))
 				{
-					RestartEntities();
-					currentScene = Scene::Menu;
+					fontSizeLost = 40;
+					message = "Player 2 lost. Is your part of the keyboard connected?";
+					pause = true;
+					lost = true;
+
 				}
 
-				if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0) || CheckBorderCollision(player2.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
+				if (CheckBorderCollision(player2.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
 				{
-					if (player.body.y < 0)
-						player.body.y = 0;
-
-					if (player.body.y + player.body.height > static_cast<float>(GetScreenHeight()))
-					{
-						RestartEntities();
-						currentScene = Scene::Menu;
-					}
-
 					if (player2.body.y < 0)
 						player2.body.y = 0;
 
 					if (player2.body.y + player2.body.height > static_cast<float>(GetScreenHeight()))
 					{
-						RestartEntities();
-						currentScene = Scene::Menu;
-					}
-				}
-			} else
-			{
-				if (CheckCollision(player.body, obstacle.body1) || CheckCollision(player.body, obstacle.body2))
-				{
-					RestartEntities();
-					timer = 3.0f;
-					currentScene = Scene::Menu;
-				}
-				if (CheckBorderCollision(player.body, GetScreenWidth(), 0, GetScreenHeight(), 0))
-				{
-					if (player.body.y < 0)
-						player.body.y = 0;
-					if (player.body.y + player.body.height > static_cast<float>(GetScreenHeight()))
-					{
-						RestartEntities();
-						currentScene = Scene::Menu;
+						message = "Player 2 lost. This has to be further, right?";
+						pause = true;
+						lost = true;
+
 					}
 				}
 			}
@@ -221,10 +221,7 @@ namespace game::scenes::gameplay
 
 		if (pause)
 		{
-			DrawRect(Rectangle{ 0, 0, static_cast<float>(screenWidth), static_cast<float>(screenHeight) }, Color{ 50, 50, 50, 200 });
-
-			button::Draw(resume);
-			button::Draw(menu);
+			pause::Draw(resume, menu, message, messageScore, messagePause, fontSizeLost, fontSizeScore, pause);
 		}
 
 		if (timer < timerStart && isMultiplayer)
@@ -271,8 +268,14 @@ namespace game::scenes::gameplay
 
 
 
-	void RestartEntities()
+	void Reset()
 	{
+		pause = !pause;
+		lost = false;
+		messageScore = "";
+		timer = 0;
+		score = 0;
+
 		AddToBuffer(Sounds::Crash);
 
 		float randomY = static_cast<float>(GetRandomValue(0, GetScreenHeight() - static_cast<int>(obstacle.body1.height)));

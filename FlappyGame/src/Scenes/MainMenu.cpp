@@ -61,7 +61,6 @@ namespace game::scenes::mainmenu
 				{
 					ChangeMusic(utils::soundManager::Musics::Game);
 					isMultiplayer = true;
-					timer = 0;
 				} else if (static_cast<Scene>(i + 1) == Scene::Gameplay)
 				{
 					ChangeMusic(utils::soundManager::Musics::Game);

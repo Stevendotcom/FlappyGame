@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <raylib.h>
 
 namespace game
 {
@@ -27,6 +28,10 @@ namespace game
 	extern bool isMultiplayer;
 
 	extern float timer;
+
+	extern float score;
+
+	extern Font defFont;
 
 	void Play();
 }
