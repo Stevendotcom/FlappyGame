@@ -6,15 +6,15 @@
 
 namespace game::scenes::howToPlay
 {
-	button::Button back;
+	static button::Button back;
 
-	bool wasOnTop = false;
-	bool isOnTop = false ;
+	static bool wasOnTop = false;
+	static bool isOnTop = false ;
 	
-	Texture2D background;
-	Texture2D midground;
-	Texture2D foreground;
-	Texture2D rules;
+	static Texture2D background;
+	static Texture2D midground;
+	static Texture2D foreground;
+	static Texture2D rules;
 
 	void Init()
 	{

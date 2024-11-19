@@ -8,8 +8,8 @@
 
 namespace game::entities::pause
 {
-	bool wasOnTop = false;
-	bool isOnTop = false;
+	static bool wasOnTop = false;
+	static bool isOnTop = false;
 
 	void Update(button::Button& resume, button::Button& menu, bool lost)
 	{

@@ -7,16 +7,16 @@
 
 namespace game::scenes::credits
 {
-	const int maxButtons = 8;
+	static const int maxButtons = 8;
 
-	button::Button buttons[maxButtons];
+	static button::Button buttons[maxButtons];
 
-	bool wasOnTop[maxButtons] = { false };
-	bool isOnTop[maxButtons] = { false };
+	static bool wasOnTop[maxButtons] = { false };
+	static bool isOnTop[maxButtons] = { false };
 
-	Texture2D background;
-	Texture2D midground;
-	Texture2D foreground;
+	static Texture2D background;
+	static Texture2D midground;
+	static Texture2D foreground;
 
 	enum Buttons
 	{

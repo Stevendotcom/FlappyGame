@@ -20,35 +20,35 @@ namespace game::scenes::gameplay
 	using namespace parallax;
 	using namespace utils::soundManager;
 
-	Player player;
-	Player player2;
-	Obstacle obstacle;
+	static Player player;
+	static Player player2;
+	static Obstacle obstacle;
 
-	Parallax background;
-	Parallax midground;
-	Parallax foreground;
+	static Parallax background;
+	static Parallax midground;
+	static Parallax foreground;
 
-	button::Button resume;
-	button::Button menu;
+	static button::Button resume;
+	static button::Button menu;
 
-	float timerStart = 3.0f;
-	float fontSizeLost = 52;
-	float fontSizeScore = 64;
+	static float timerStart = 3.0f;
+	static float fontSizeLost = 52;
+	static float fontSizeScore = 64;
 
-	bool pause;
-	bool lost;
+	static bool pause;
+	static bool lost;
 
-	std::string message = "You lost!";
-	std::string messagePause = "Pause";
-	std::string messageScore = "Score";
+	static std::string message = "You lost!";
+	static std::string messagePause = "Pause";
+	static std::string messageScore = "Score";
 
-	Vector2 size;
-	Vector2 sizePause;
-	Vector2 sizeScore;
+	static Vector2 size;
+	static Vector2 sizePause;
+	static Vector2 sizeScore;
 
-	void InitEntities();
+	static void InitEntities();
 
-	void Reset();
+	static void Reset();
 
 
 

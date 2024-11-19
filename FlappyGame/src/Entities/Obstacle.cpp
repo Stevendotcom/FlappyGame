@@ -4,9 +4,9 @@
 
 namespace game::entities::obstacle
 {
-	const float separation = 1.7f;
+	static const float separation = 1.7f;
 
-	void Move(Obstacle &obstacle);
+	static void Move(Obstacle &obstacle);
 
 
 

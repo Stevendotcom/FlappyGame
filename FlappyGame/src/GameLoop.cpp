@@ -13,14 +13,14 @@ using namespace game::utils;
 
 namespace game
 {
+	static Scene prevScene = Scene::Menu;
+
 	const std::string GameName = "FlappyBird";
 
 	int screenWidth = 1024;
 	int screenHeight = 768;
 
 	Scene currentScene = Scene::Menu;
-
-	auto prevScene = Scene::Menu;
 
 	bool programLoop = true;
 

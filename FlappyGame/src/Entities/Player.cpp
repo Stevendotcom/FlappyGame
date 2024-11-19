@@ -5,13 +5,13 @@
 
 namespace game::entities::player
 {
-	void Gravity(Player &player);
+	static void Gravity(Player &player);
 
-	void Move(Player &player);
+	static void Move(Player &player);
 
-	void Jump(Player &player);
+	static void Jump(Player &player);
 
-	void Animation(Player &player);
+	static void Animation(Player &player);
 
 
 
@@ -88,7 +88,7 @@ namespace game::entities::player
 	{
 		player.body.x = x;
 		player.body.y = y;
-		player.velocity = {0,0};
+		player.velocity = { 0, 0 };
 		player.isAlive = true;
 	}
 

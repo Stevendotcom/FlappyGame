@@ -7,25 +7,25 @@
 
 namespace game::scenes::mainmenu
 {
-	const std::string GameVersion = "Version 1.0";
-	const int maxButtons = 5;
+	static const std::string GameVersion = "Version 1.0";
+	static const int maxButtons = 5;
 
-	button::Button buttons[maxButtons];
+	static button::Button buttons[maxButtons];
 
-	button::Button mute;
+	static button::Button mute;
 
-	bool wasOnTop[maxButtons] = { false };
-	bool isOnTop[maxButtons] = { false };
+	static bool wasOnTop[maxButtons] = { false };
+	static bool isOnTop[maxButtons] = { false };
 
-	bool muted = false;
+	static bool muted = false;
 
-	Texture2D header;
-	Texture2D background;
-	Texture2D midground;
-	Texture2D foreground;
+	static Texture2D header;
+	static Texture2D background;
+	static Texture2D midground;
+	static Texture2D foreground;
 
-	Texture2D muteOn;
-	Texture2D muteOff;
+	static Texture2D muteOn;
+	static Texture2D muteOff;
 
 
 
