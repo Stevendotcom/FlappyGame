@@ -170,7 +170,7 @@ namespace game::scenes::gameplay
 				}
 			}
 
-			if (isMultiplayer)
+			if (isMultiplayer && !lost)
 			{
 				if (CheckCollision(player2.body, obstacle.body1) || CheckCollision(player2.body, obstacle.body2))
 				{
