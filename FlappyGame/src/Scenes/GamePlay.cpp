@@ -228,9 +228,14 @@ namespace game::scenes::gameplay
 
 		if (timer < timerStart && isMultiplayer)
 		{
-			DrawRectangle(0, 0, GetScreenWidth(), GetScreenWidth(), { 0, 0, 0, 100 });
-			DrawText("Player 1 jumps with W", 20, 100, 48, WHITE);
-			DrawText("Player 2 jumps with Up key", 20, 160, 48, WHITE);
+			DrawRectangle(0, 0, GetScreenWidth(), GetScreenWidth(), { 50, 50, 50, 200 });
+
+			DrawTexturePro(player.texture, player.source, { 80, static_cast<float>(screenHeight) / 2.0f - 30.0f, player.body.width, player.body.width }, player.origin, 0, WHITE);
+			DrawText("Player 1 jumps with W", 100, screenHeight / 2- 75, 48, WHITE);
+
+			DrawTexturePro(player2.texture, player2.source, { 80, static_cast<float>(screenHeight) / 2.0f + 120.0f, player2.body.width, player2.body.width }, player2.origin, 0, WHITE);
+			DrawText("Player 2 jumps with Up key", 100, screenHeight / 2 + 75, 48, WHITE);
+			
 			DrawText(TextFormat("%0.1f", (timerStart - timer)), GetScreenWidth() / 2, 215, 48, WHITE);
 		}
 	}
