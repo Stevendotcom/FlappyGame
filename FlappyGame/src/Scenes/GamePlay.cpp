@@ -178,6 +178,7 @@ namespace game::scenes::gameplay
 					message = "Player 2 lost. Is your part of the keyboard connected?";
 					pause = true;
 					lost = true;
+					messageScore.append(" " + std::to_string(static_cast<int>(score)));
 
 				}
 
@@ -191,6 +192,7 @@ namespace game::scenes::gameplay
 						message = "Player 2 lost. This has to be further, right?";
 						pause = true;
 						lost = true;
+						messageScore.append(" " + std::to_string(static_cast<int>(score)));
 
 					}
 				}
