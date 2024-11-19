@@ -81,27 +81,35 @@ namespace game::scenes::credits
 				AddToBuffer(utils::soundManager::Sounds::Click);
 				switch (i)
 				{
+
 				case back:
 					currentScene = Scene::Menu;
 					break;
+
 				case emaButton:
 					OpenURL("https://frostpower.itch.io/");
 					break;
+
 				case nicoButton:
 					OpenURL("https://projectbifron.itch.io");
 					break;
+
 				case pixelRpgMusic:
 					OpenURL("https://alkakrab.itch.io/free-12-tracks-pixel-rpg-game-music-pack");
 					break;
+
 				case uiEssential:
 					OpenURL("https://crusenho.itch.io/complete-ui-essential-pack");
 					break;
+
 				case beholden:
 					OpenURL("https://amorphous.itch.io/beholden");
 					break;
+
 				case cannonSound:
 					OpenURL("https://pixabay.com/sound-effects/cannon-firing-193247/");
 					break;
+
 				case uiSfx:
 					OpenURL("https://jdsherbert.itch.io/ultimate-ui-sfx-pack");
 					break;

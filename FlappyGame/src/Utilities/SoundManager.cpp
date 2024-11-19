@@ -67,16 +67,20 @@ namespace game::utils::soundManager
 
 		switch (nextMusic)
 		{
+
 		case Musics::MainMenu:
 			music = mainMenu;
 			break;
+
 		case Musics::Game:
 			music = gameMusic;
 			break;
+
 		default:
 			std::cerr << "Music index not expected";
 			music = gameMusic;
 			break;
+
 		}
 
 		PlayMusicStream(music);
