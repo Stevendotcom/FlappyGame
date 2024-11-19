@@ -24,8 +24,21 @@
     <ClCompile Include="src\UI\Text.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Obstacle.cpp" />
-    <ClCompile Include="src\Entities\parallax.cpp" />
+    <ClCompile Include="src\Entities\parallax.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Pause.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\HowToPlay.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\Obstacle.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\SoundManager.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameLoop.h" />
@@ -50,8 +63,21 @@
     <ClInclude Include="src\UI\Text.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\Obstacle.h" />
-    <ClInclude Include="src\Entities\parallax.h" />
+    <ClInclude Include="src\Entities\parallax.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Pause.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\HowToPlay.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Obstacle.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\SoundManager.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">
