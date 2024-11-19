@@ -1,7 +1,7 @@
 #pragma once
 
+#include "raylib.h"
 #include <iostream>
-#include <raylib.h>
 
 namespace game
 {

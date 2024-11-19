@@ -1,8 +1,8 @@
 ﻿#include "SoundManager.h"
 
+#include "raylib.h"
 #include <array>
 #include <iostream>
-#include <raylib.h>
 
 namespace game::utils::soundManager
 {
