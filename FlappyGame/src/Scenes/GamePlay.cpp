@@ -213,7 +213,11 @@ namespace game::scenes::gameplay
 		player::Draw(player);
 
 		if (isMultiplayer)
+		{
+			DrawText("Player 1", static_cast<int>(player.body.x) + 20, static_cast<int>(player.body.y) - 8, 16, { 32, 218, 254, 255 });
 			player::Draw(player2);
+			DrawText("Player 2", static_cast<int>(player2.body.x) + 20, static_cast<int>(player2.body.y) - 8, 16, { 40, 223, 170, 255 });
+		}
 
 		obstacle::Draw(obstacle);
 
