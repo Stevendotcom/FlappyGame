@@ -86,7 +86,7 @@ namespace game::scenes::gameplay
 
 			if (pause)
 			{
-				if (IsPressed(resume))
+				if (IsPressed(resume) && !lost)
 				{
 					pause = !pause;
 					AddToBuffer(Sounds::Click);
