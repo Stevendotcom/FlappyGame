@@ -172,6 +172,7 @@ namespace game::scenes::gameplay
 
 			if (isMultiplayer && !lost)
 			{
+				player.body.x = player2.body.x + 60;
 				if (CheckCollision(player2.body, obstacle.body1) || CheckCollision(player2.body, obstacle.body2))
 				{
 					fontSizeLost = 40;
