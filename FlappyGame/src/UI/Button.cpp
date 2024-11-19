@@ -79,13 +79,13 @@ namespace button
 	{
 		bool isReleassed = false;
 
-		if (IsMouseButtonReleased(MouseButton::MOUSE_BUTTON_LEFT))
+		if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
 			if (button.isMouseOnTop)
 			{
 				isReleassed = true;
 			}
 
-		if (IsMouseButtonDown(MouseButton::MOUSE_BUTTON_LEFT))
+		if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 		{
 			if (button.isMouseOnTop)
 				button.isPressed = true;

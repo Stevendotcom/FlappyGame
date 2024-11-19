@@ -41,10 +41,10 @@ namespace game::scenes::mainmenu
 			graph.y += button::ButtonHeight * 1.5f;
 		}
 
-		button::SetText(buttons[0], "1 Player");
-		button::SetText(buttons[1], "2 Players");
-		button::SetText(buttons[2], "Credits");
-		button::SetText(buttons[3], "Exit");
+		SetText(buttons[0], "1 Player");
+		SetText(buttons[1], "2 Players");
+		SetText(buttons[2], "Credits");
+		SetText(buttons[3], "Exit");
 	}
 
 
@@ -53,7 +53,7 @@ namespace game::scenes::mainmenu
 	{
 		for (int i = 0; i < maxButtons; i++)
 		{
-			if (button::IsPressed(buttons[i]))
+			if (IsPressed(buttons[i]))
 			{
 				AddToBuffer(utils::soundManager::Sounds::Click);
 				currentScene = static_cast<Scene>(i + 1);
@@ -76,7 +76,7 @@ namespace game::scenes::mainmenu
 	{
 		for (int i = 0; i < maxButtons; i++)
 		{
-			isOnTop[i] = button::MouseOnTop(buttons[i]);
+			isOnTop[i] = MouseOnTop(buttons[i]);
 			if (isOnTop[i])
 			{
 				if (!wasOnTop[i])

@@ -7,7 +7,7 @@
 
 namespace game::scenes::credits
 {
-	const int maxButtons = 3;
+	const int maxButtons = 8;
 
 	button::Button buttons[maxButtons];
 
@@ -19,6 +19,12 @@ namespace game::scenes::credits
 		back,
 		emaButton,
 		nicoButton,
+		pixelRpgMusic,
+		uiEssential,
+		beholden,
+		cannonSound,
+		uiSfx
+
 	};
 
 
@@ -28,16 +34,33 @@ namespace game::scenes::credits
 		float x = button::ButtonWidth / 2;
 		float y = button::ButtonHeight / 2;
 
-		Rectangle graph = { x, y, button::ButtonWidth, button::ButtonHeight };
+		Rectangle graph = { x + 60, y + 10, button::ButtonWidth + 100, button::ButtonHeight -10};
 
 		buttons[back] = button::Create(graph, "Back");
 
-		graph.x = (static_cast<float>(GetScreenWidth()) / 2.f);
-		graph.y = (static_cast<float>(GetScreenHeight()) / 2.f);
+		graph.x = (static_cast<float>(GetScreenWidth()) / 2.0f);
+		graph.y = (120);
 		buttons[emaButton] = button::Create(graph, "Emanuel Parajon");
 
-		graph.y = (static_cast<float>(GetScreenHeight()) / 2.f + 100);
+		graph.y = graph.y + 100;
 		buttons[nicoButton] = button::Create(graph, "Nicolas Gallardo");
+
+		graph.y = graph.y + 100;
+		buttons[pixelRpgMusic] = button::Create(graph, "alkakrab");
+
+		graph.y = graph.y + 100;
+		buttons[uiEssential] = button::Create(graph, "Crusehno");
+
+		graph.y = graph.y + 100;
+		buttons[beholden] = button::Create(graph, "Amorphous");
+
+		graph.y = graph.y + 100;
+		buttons[cannonSound] = button::Create(graph, "Alex_Jauk");
+
+		graph.y = graph.y + 100;
+		buttons[uiSfx] = button::Create(graph, "JDSherbert");
+
+
 	}
 
 
@@ -46,7 +69,7 @@ namespace game::scenes::credits
 	{
 		for (int i = 0; i < maxButtons; i++)
 		{
-			if (button::IsPressed(buttons[i]))
+			if (IsPressed(buttons[i]))
 			{
 				AddToBuffer(utils::soundManager::Sounds::Click);
 				switch (i)
@@ -60,6 +83,22 @@ namespace game::scenes::credits
 				case nicoButton:
 					OpenURL("https://projectbifron.itch.io");
 					break;
+				case pixelRpgMusic:
+					OpenURL("https://alkakrab.itch.io/free-12-tracks-pixel-rpg-game-music-pack");
+					break;
+				case uiEssential:
+					OpenURL("https://crusenho.itch.io/complete-ui-essential-pack");
+					break;
+				case beholden:
+					OpenURL("https://amorphous.itch.io/beholden");
+					break;
+				case cannonSound:
+					OpenURL("https://pixabay.com/sound-effects/cannon-firing-193247/");
+					break;
+				case uiSfx:
+					OpenURL("https://jdsherbert.itch.io/ultimate-ui-sfx-pack");
+					break;
+
 				}
 			}
 		}
@@ -71,14 +110,13 @@ namespace game::scenes::credits
 	{
 		for (int i = 0; i < maxButtons; i++)
 		{
-			isOnTop[i] = button::MouseOnTop(buttons[i]);
+			isOnTop[i] = MouseOnTop(buttons[i]);
 			if (isOnTop[i])
 			{
 				if (!wasOnTop[i])
 					AddToBuffer(utils::soundManager::Sounds::Hover);
 				wasOnTop[i] = true;
-			}
-			else
+			} else
 				wasOnTop[i] = false;
 		}
 	}
@@ -88,12 +126,25 @@ namespace game::scenes::credits
 	void Draw()
 	{
 		button::Draw(buttons[back]);
-		DrawText("Lead Programmer", static_cast<int>(GetCenterPosition(buttons[emaButton]).x) - MeasureText("Lead Programmer", 32),
-		         static_cast<int>(GetCenterPosition(buttons[emaButton]).y) - 60, 32, BLACK);
-		button::Draw(buttons[emaButton]);
 
-		DrawText("Junior Programmer", static_cast<int>(GetCenterPosition(buttons[nicoButton]).x), static_cast<int>(GetCenterPosition(buttons[nicoButton]).y) - 60, 32, BLACK);
-		button::Draw(buttons[nicoButton]);
+		for (int i = 0; i < maxButtons; i++)
+		{
+			button::Draw(buttons[i]);
+		}
+
+		DrawText("Lead Programmer and artist", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[emaButton]).y) - 60, 30, BLACK);
+
+		DrawText("Programmer and artist", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[nicoButton]).y) - 60, 30, WHITE);
+
+		DrawText("Pixel RPG Music Pack", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[pixelRpgMusic]).y) - 60, 30, WHITE);
+
+		DrawText("UI Essential Pack", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[uiEssential]).y) - 60, 30, WHITE);
+
+		DrawText("Beholden Font", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[beholden]).y) - 60, 30, WHITE);
+
+		DrawText("Cannon Sound", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[cannonSound]).y) - 60, 30, WHITE);
+
+		DrawText("Ultimate UI SFX Pack", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[uiSfx]).y) - 60, 30, WHITE);
 	}
 
 
