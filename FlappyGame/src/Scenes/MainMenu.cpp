@@ -8,7 +8,7 @@
 namespace game::scenes::mainmenu
 {
 	const std::string GameVersion = "Version 1.0";
-	const int maxButtons = 4;
+	const int maxButtons = 5;
 
 	button::Button buttons[maxButtons];
 
@@ -43,8 +43,9 @@ namespace game::scenes::mainmenu
 
 		SetText(buttons[0], "1 Player");
 		SetText(buttons[1], "2 Players");
-		SetText(buttons[2], "Credits");
-		SetText(buttons[3], "Exit");
+		SetText(buttons[2], "Rules");
+		SetText(buttons[3], "Credits");
+		SetText(buttons[4], "Exit");
 	}
 
 

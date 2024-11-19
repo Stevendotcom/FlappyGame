@@ -10,7 +10,7 @@ namespace game
 		Menu,
 		Gameplay,
 		GameplayMultiplayer,
-		//OPTIONS,
+		HowToPlay,
 		Credits,
 		Exit,
 		None

@@ -4,6 +4,7 @@
 
 #include "Scenes/Credits.h"
 #include "Scenes/GamePlay.h"
+#include "Scenes/HowToPlay.h"
 #include "Scenes/MainMenu.h"
 #include "Utilities/SoundManager.h"
 
@@ -67,6 +68,7 @@ namespace game
 		gameplay::Init();
 		credits::Init();
 		soundManager::Init();
+		howToPlay::Init();
 
 		defFont = LoadFontEx("res/Beholden-Regular.ttf", 64, nullptr, 0);
 	}
@@ -82,6 +84,10 @@ namespace game
 		case Scene::GameplayMultiplayer:
 		case Scene::Gameplay:
 			gameplay::Input();
+			break;
+
+		case Scene::HowToPlay:
+			howToPlay::Input();
 			break;
 
 		case Scene::Credits:
@@ -101,9 +107,12 @@ namespace game
 			break;
 
 		case Scene::GameplayMultiplayer:
-
 		case Scene::Gameplay:
 			gameplay::Update();
+			break;
+
+		case Scene::HowToPlay:
+			howToPlay::Update();
 			break;
 
 		case Scene::Credits:
@@ -133,6 +142,10 @@ namespace game
 			gameplay::Draw();
 			break;
 
+		case Scene::HowToPlay:
+			howToPlay::Draw();
+			break;
+
 		case Scene::Credits:
 			credits::Draw();
 			break;
@@ -147,11 +160,10 @@ namespace game
 		gameplay::DeInit();
 		credits::DeInit();
 		soundManager::DeInit();
-
+		howToPlay::DeInit();
 		CloseAudioDevice();
 		CloseWindow();
 
 		UnloadFont(defFont);
 	}
-}
-
+} // namespace game

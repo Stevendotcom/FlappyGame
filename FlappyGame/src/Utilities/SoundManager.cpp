@@ -99,18 +99,23 @@ namespace game::utils::soundManager
 		case Sounds::Jump:
 			soundBuffer.at(newSoundPos) = LoadSoundAlias(Jump);
 			break;
+
 		case Sounds::Hover:
 			soundBuffer.at(newSoundPos) = LoadSoundAlias(Hover);
 			break;
+
 		case Sounds::Click:
 			soundBuffer.at(newSoundPos) = LoadSoundAlias(Click);
 			break;
+
 		case Sounds::Crash:
 			soundBuffer.at(newSoundPos) = LoadSoundAlias(Crash);
 			break;
+
 		case Sounds::PauseUp:
 			soundBuffer.at(newSoundPos) = LoadSoundAlias(PauseUp);
 			break;
+
 		default:
 			std::cerr << "Sound index not expected";
 			break;
