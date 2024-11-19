@@ -11,8 +11,12 @@ namespace game::scenes::credits
 
 	button::Button buttons[maxButtons];
 
-	static bool wasOnTop[maxButtons] = {false};
-	static bool isOnTop[maxButtons] = {false};
+	static bool wasOnTop[maxButtons] = { false };
+	static bool isOnTop[maxButtons] = { false };
+
+	Texture2D background;
+	Texture2D midground;
+	Texture2D foreground;
 
 	enum Buttons
 	{
@@ -60,6 +64,9 @@ namespace game::scenes::credits
 		graph.y = graph.y + 100;
 		buttons[uiSfx] = button::Create(graph, "JDSherbert");
 
+		background = LoadTexture("res/BackGround.png");
+		midground = LoadTexture("res/MidGround.png");
+		foreground = LoadTexture("res/ForeGround.png");
 
 	}
 
@@ -125,6 +132,14 @@ namespace game::scenes::credits
 
 	void Draw()
 	{
+		DrawTexturePro(background, { 0, 0, static_cast<float>(background.width), static_cast<float>(background.height) },
+			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+		DrawTexturePro(midground, { 0, 0, static_cast<float>(midground.width), static_cast<float>(midground.height) },
+			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+		DrawTexturePro(foreground, { 0, 0, static_cast<float>(foreground.width), static_cast<float>(foreground.height) },
+			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+
+
 		button::Draw(buttons[back]);
 
 		for (int i = 0; i < maxButtons; i++)
@@ -150,5 +165,9 @@ namespace game::scenes::credits
 
 
 	void DeInit()
-	{}
+	{
+		UnloadTexture(background);
+		UnloadTexture(midground);
+		UnloadTexture(foreground);
+	}
 }
