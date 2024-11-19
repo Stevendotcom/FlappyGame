@@ -14,6 +14,7 @@ namespace game::scenes::howToPlay
 	Texture2D background;
 	Texture2D midground;
 	Texture2D foreground;
+	Texture2D rules;
 
 	void Init()
 	{
@@ -24,6 +25,7 @@ namespace game::scenes::howToPlay
 		background = LoadTexture("res/BackGround.png");
 		midground = LoadTexture("res/MidGround.png");
 		foreground = LoadTexture("res/ForeGround.png");
+		rules = LoadTexture("res/HowToPlay.png");
 	}
 
 
@@ -55,7 +57,6 @@ namespace game::scenes::howToPlay
 
 	void Draw()
 	{
-		button::Draw(back);
 
 		DrawTexturePro(background, { 0, 0, static_cast<float>(background.width), static_cast<float>(background.height) },
 			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
@@ -63,6 +64,15 @@ namespace game::scenes::howToPlay
 			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
 		DrawTexturePro(foreground, { 0, 0, static_cast<float>(foreground.width), static_cast<float>(foreground.height) },
 			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+
+		DrawRectangle(0, 0, screenWidth, screenHeight, { 50, 50, 50, 200 });
+		
+		DrawTexturePro(rules, { 0, 0, static_cast<float>(rules.width), static_cast<float>(rules.height) },
+			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
+
+		button::Draw(back);
+
+
 	}
 
 
@@ -73,5 +83,6 @@ namespace game::scenes::howToPlay
 		UnloadTexture(background);
 		UnloadTexture(midground);
 		UnloadTexture(foreground);
+		UnloadTexture(rules);
 	}
 }
