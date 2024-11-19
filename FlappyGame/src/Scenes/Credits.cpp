@@ -147,6 +147,8 @@ namespace game::scenes::credits
 		DrawTexturePro(foreground, { 0, 0, static_cast<float>(foreground.width), static_cast<float>(foreground.height) },
 			       { 0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight()) }, { 0, 0 }, 0, WHITE);
 
+		DrawRectangle(0, 0, screenWidth, screenHeight, { 50, 50, 50, 200 });
+
 
 		button::Draw(buttons[back]);
 
@@ -155,7 +157,7 @@ namespace game::scenes::credits
 			button::Draw(buttons[i]);
 		}
 
-		DrawText("Lead Programmer and artist", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[emaButton]).y) - 60, 30, BLACK);
+		DrawText("Lead Programmer and artist", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[emaButton]).y) - 60, 30, WHITE);
 
 		DrawText("Programmer and artist", screenWidth - 450, static_cast<int>(GetCenterPosition(buttons[nicoButton]).y) - 60, 30, WHITE);
 
