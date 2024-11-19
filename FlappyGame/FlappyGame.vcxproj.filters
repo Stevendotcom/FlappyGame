@@ -24,7 +24,7 @@
     <ClCompile Include="src\UI\Text.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\parallax.cpp">
+    <ClCompile Include="src\Entities\Parallax.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Pause.cpp">
@@ -63,7 +63,7 @@
     <ClInclude Include="src\UI\Text.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entities\parallax.h">
+    <ClInclude Include="src\Entities\Parallax.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="src\Entities\Pause.h">
