@@ -11,8 +11,8 @@ namespace game::scenes::credits
 
 	button::Button buttons[maxButtons];
 
-	static bool wasOnTop[maxButtons] = { false };
-	static bool isOnTop[maxButtons] = { false };
+	bool wasOnTop[maxButtons] = { false };
+	bool isOnTop[maxButtons] = { false };
 
 	Texture2D background;
 	Texture2D midground;
