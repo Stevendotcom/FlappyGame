@@ -6,29 +6,29 @@
 
 namespace game::utils::soundManager
 {
-	const int bufferSpace = 10;
+	static const int bufferSpace = 10;
 
-	Music mainMenu;
+	static Music mainMenu;
 
-	Music gameMusic;
+	static Music gameMusic;
 
-	Music music;
+	static Music music;
 
-	Sound Jump;
+	static Sound jump;
 
-	Sound Hover;
+	static Sound hover;
 
-	Sound Click;
+	static Sound click;
 
-	Sound Crash;
+	static Sound crash;
 
-	Sound PauseUp;
+	static Sound pauseUp;
 
-	std::array<Sound, bufferSpace> soundBuffer;
+	static std::array<Sound, bufferSpace> soundBuffer;
 
-	int bufferCounter = 0;
+	static int bufferCounter = 0;
 
-	int newSoundPos = 0;
+	static int newSoundPos = 0;
 
 
 
@@ -36,11 +36,11 @@ namespace game::utils::soundManager
 	{
 		mainMenu = LoadMusicStream("res/StrangeFarm.ogg");
 		gameMusic = LoadMusicStream("res/InTheCastle.ogg");
-		Jump = LoadSound("res/cannon-firing.mp3");
-		Hover = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Cursor-4.ogg");
-		Click = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Select-2.ogg");
-		Crash = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Error-1.ogg");
-		PauseUp = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Swipe-2.ogg");
+		jump = LoadSound("res/cannon-firing.mp3");
+		hover = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Cursor-4.ogg");
+		click = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Select-2.ogg");
+		crash = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Error-1.ogg");
+		pauseUp = LoadSound("res/JDSherbert-Ultimate_UI_SFX_Pack-Swipe-2.ogg");
 		music = mainMenu;
 		PlayMusicStream(music);
 	}
@@ -97,23 +97,23 @@ namespace game::utils::soundManager
 		{
 
 		case Sounds::Jump:
-			soundBuffer.at(newSoundPos) = LoadSoundAlias(Jump);
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(jump);
 			break;
 
 		case Sounds::Hover:
-			soundBuffer.at(newSoundPos) = LoadSoundAlias(Hover);
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(hover);
 			break;
 
 		case Sounds::Click:
-			soundBuffer.at(newSoundPos) = LoadSoundAlias(Click);
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(click);
 			break;
 
 		case Sounds::Crash:
-			soundBuffer.at(newSoundPos) = LoadSoundAlias(Crash);
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(crash);
 			break;
 
 		case Sounds::PauseUp:
-			soundBuffer.at(newSoundPos) = LoadSoundAlias(PauseUp);
+			soundBuffer.at(newSoundPos) = LoadSoundAlias(pauseUp);
 			break;
 
 		default:
@@ -133,11 +133,11 @@ namespace game::utils::soundManager
 
 		UnloadMusicStream(mainMenu);
 		UnloadMusicStream(gameMusic);
-		UnloadSound(Jump);
-		UnloadSound(Hover);
-		UnloadSound(Click);
-		UnloadSound(Crash);
-		UnloadSound(PauseUp);
+		UnloadSound(jump);
+		UnloadSound(hover);
+		UnloadSound(click);
+		UnloadSound(crash);
+		UnloadSound(pauseUp);
 	}
 
 }
